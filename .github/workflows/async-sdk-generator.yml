@@ -15,6 +15,7 @@ jobs:
     steps:
       - run: |
           echo "Version: $VERSION"
+          echo "Tag: $TAG"
       - uses: actions/checkout@v4
         with:
           path: lakefs-sdk-async
@@ -31,7 +32,8 @@ jobs:
           ls -lha $GITHUB_WORKSPACE/lakefs || true
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async || true
         env:
-          VERSION: ${{ inputs.version }}
+          VERSION: ${{ github.event.inputs.version }}
+          TAG: "v${{ github.event.inputs.version }}"
 #jobs:
 #  log-the-inputs:
 #    runs-on: ubuntu-latest
