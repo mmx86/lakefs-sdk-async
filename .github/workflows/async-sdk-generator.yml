@@ -24,7 +24,7 @@ jobs:
           path: lakefs-sdk-async
       - uses: actions/checkout@v4
         with:
-          repository: treeverse/lakefs
+          repository: treeverse/lakeFS
           path: lakefs
           ref: v1.0.0
       - run: |
