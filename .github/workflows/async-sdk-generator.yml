@@ -15,11 +15,9 @@ jobs:
     steps:
       - run: |
           echo "Version: $VERSION"
-      - run: |
-          ls -lha $GITHUB_WORKSPACE
-          ls -lha $GITHUB_WORKSPACE/lakefs || true
-          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async || true
       - uses: actions/checkout@v4
+        with:
+          path: lakefs-sdk-async
       - run: |
           ls -lha $GITHUB_WORKSPACE
           ls -lha $GITHUB_WORKSPACE/lakefs || true
@@ -27,6 +25,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: treeverse/lakefs
+          path: lakefs
       - run: |
           ls -lha $GITHUB_WORKSPACE
           ls -lha $GITHUB_WORKSPACE/lakefs || true
