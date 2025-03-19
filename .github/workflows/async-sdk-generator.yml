@@ -29,8 +29,10 @@ jobs:
           ref: ${{ env.TAG }}
       - run: |
           ls -lha $GITHUB_WORKSPACE
-          ls -lha $GITHUB_WORKSPACE/lakefs || true
-          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async || true
+          ls -lha $GITHUB_WORKSPACE/lakefs
+          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
+          cat $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
+
 #jobs:
 #  log-the-inputs:
 #    runs-on: ubuntu-latest
