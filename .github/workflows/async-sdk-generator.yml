@@ -15,23 +15,22 @@ jobs:
     steps:
       - run: |
           echo "Version: $VERSION"
+      - run: |
           ls -lha $GITHUB_WORKSPACE
-          ls -lha $GITHUB_WORKSPACE/lakefs
-          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
+          ls -lha $GITHUB_WORKSPACE/lakefs || true
+          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async || true
       - uses: actions/checkout@v4
       - run: |
-          echo "Version: $VERSION"
           ls -lha $GITHUB_WORKSPACE
-          ls -lha $GITHUB_WORKSPACE/lakefs
-          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
+          ls -lha $GITHUB_WORKSPACE/lakefs || true
+          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async || true
       - uses: actions/checkout@v4
         with:
           repository: treeverse/lakefs
       - run: |
-          echo "Version: $VERSION"
           ls -lha $GITHUB_WORKSPACE
-          ls -lha $GITHUB_WORKSPACE/lakefs
-          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
+          ls -lha $GITHUB_WORKSPACE/lakefs || true
+          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async || true
         env:
           VERSION: ${{ inputs.version }}
 #jobs:
