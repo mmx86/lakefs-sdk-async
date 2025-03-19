@@ -31,6 +31,7 @@ jobs:
           ls -lha $GITHUB_WORKSPACE
           ls -lha $GITHUB_WORKSPACE/lakefs
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
+          echo -e "library: asyncio\n" >> $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
           cat $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
 
 #jobs:
