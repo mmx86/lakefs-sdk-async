@@ -49,8 +49,9 @@ jobs:
           cp -r $GITHUB_WORKSPACE/lakefs/clients/python $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs_sdk_async
       - name: Ok check
         run: |
-          ls -lha lakefs-sdk-async
-          ls -lha lakefs-sdk-async/lakefs-sdk-async
+          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
+          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs_sdk_async
+
 
 #jobs:
 #  log-the-inputs:
