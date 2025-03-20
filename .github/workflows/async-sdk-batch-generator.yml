@@ -42,14 +42,14 @@ jobs:
           echo "versions=$NEW_VERSIONS_JSON" >> $GITHUB_OUTPUT
 
   generate-new-version:
-    needs: setup
-    uses: mmx86/lakefs-sdk-async/.github/workflows/async-sdk-version-generator.yml@master
-    with:
-      version: ${{ matrix.version }}
     if: ${{ needs.setup.outputs.versions != '[]' && needs.setup.outputs.versions != '' }}
+    needs: setup
     strategy:
       matrix:
         version: ${{ fromJSON(needs.setup.outputs.versions) }}
       fail-fast: true  # Fail whole matrix on error
       max-parallel: 1
+    uses: mmx86/lakefs-sdk-async/.github/workflows/async-sdk-version-generator.yml@master
+    with:
+      version: ${{ matrix.version }}
       
