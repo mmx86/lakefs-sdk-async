@@ -53,11 +53,11 @@ jobs:
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async
       - name: New commit
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add -A
-          git commit -m "generated new version ${VERSION}"
-          git push
+          git -C $GITHUB_WORKSPACE/lakefs-sdk-async config --global user.name 'github-actions'
+          git -C $GITHUB_WORKSPACE/lakefs-sdk-async config --global user.email 'github-actions@github.com'
+          git -C $GITHUB_WORKSPACE/lakefs-sdk-async add -A
+          git -C $GITHUB_WORKSPACE/lakefs-sdk-async commit -m "generated new version ${VERSION}"
+          git -C $GITHUB_WORKSPACE/lakefs-sdk-async push
 
 
 #jobs:
