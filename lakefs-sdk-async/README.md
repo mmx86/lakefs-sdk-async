@@ -169,6 +169,7 @@ Class | Method | HTTP request | Description
 *ExperimentalApi* | [**complete_presign_multipart_upload**](docs/ExperimentalApi.md#complete_presign_multipart_upload) | **PUT** /repositories/{repository}/branches/{branch}/staging/pmpu/{uploadId} | Complete a presign multipart upload request
 *ExperimentalApi* | [**create_presign_multipart_upload**](docs/ExperimentalApi.md#create_presign_multipart_upload) | **POST** /repositories/{repository}/branches/{branch}/staging/pmpu | Initiate a multipart upload
 *ExperimentalApi* | [**get_otf_diffs**](docs/ExperimentalApi.md#get_otf_diffs) | **GET** /otf/diffs | get the available Open Table Format diffs
+*ExperimentalApi* | [**hard_reset_branch**](docs/ExperimentalApi.md#hard_reset_branch) | **PUT** /repositories/{repository}/branches/{branch}/hard_reset | hard reset branch
 *ExperimentalApi* | [**otf_diff**](docs/ExperimentalApi.md#otf_diff) | **GET** /repositories/{repository}/otf/refs/{left_ref}/diff/{right_ref} | perform otf diff
 *HealthCheckApi* | [**health_check**](docs/HealthCheckApi.md#health_check) | **GET** /healthcheck | 
 *ImportApi* | [**import_cancel**](docs/ImportApi.md#import_cancel) | **DELETE** /repositories/{repository}/branches/{branch}/import | cancel ongoing import
@@ -176,12 +177,14 @@ Class | Method | HTTP request | Description
 *ImportApi* | [**import_status**](docs/ImportApi.md#import_status) | **GET** /repositories/{repository}/branches/{branch}/import | get import status
 *InternalApi* | [**create_branch_protection_rule_preflight**](docs/InternalApi.md#create_branch_protection_rule_preflight) | **GET** /repositories/{repository}/branch_protection/set_allowed | 
 *InternalApi* | [**create_symlink_file**](docs/InternalApi.md#create_symlink_file) | **POST** /repositories/{repository}/refs/{branch}/symlink | creates symlink files corresponding to the given directory
+*InternalApi* | [**delete_repository_metadata**](docs/InternalApi.md#delete_repository_metadata) | **DELETE** /repositories/{repository}/metadata | delete repository metadata
 *InternalApi* | [**dump_refs**](docs/InternalApi.md#dump_refs) | **PUT** /repositories/{repository}/refs/dump | Dump repository refs (tags, commits, branches) to object store Deprecated: a new API will introduce long running operations 
 *InternalApi* | [**get_auth_capabilities**](docs/InternalApi.md#get_auth_capabilities) | **GET** /auth/capabilities | list authentication capabilities supported
 *InternalApi* | [**get_garbage_collection_config**](docs/InternalApi.md#get_garbage_collection_config) | **GET** /config/garbage-collection | 
 *InternalApi* | [**get_lake_fs_version**](docs/InternalApi.md#get_lake_fs_version) | **GET** /config/version | 
 *InternalApi* | [**get_setup_state**](docs/InternalApi.md#get_setup_state) | **GET** /setup_lakefs | check if the lakeFS installation is already set up
 *InternalApi* | [**get_storage_config**](docs/InternalApi.md#get_storage_config) | **GET** /config/storage | 
+*InternalApi* | [**get_usage_report_summary**](docs/InternalApi.md#get_usage_report_summary) | **GET** /usage-report/summary | get usage report summary
 *InternalApi* | [**internal_create_branch_protection_rule**](docs/InternalApi.md#internal_create_branch_protection_rule) | **POST** /repositories/{repository}/branch_protection | 
 *InternalApi* | [**internal_delete_branch_protection_rule**](docs/InternalApi.md#internal_delete_branch_protection_rule) | **DELETE** /repositories/{repository}/branch_protection | 
 *InternalApi* | [**internal_delete_garbage_collection_rules**](docs/InternalApi.md#internal_delete_garbage_collection_rules) | **DELETE** /repositories/{repository}/gc/rules | 
@@ -193,6 +196,7 @@ Class | Method | HTTP request | Description
 *InternalApi* | [**prepare_garbage_collection_uncommitted**](docs/InternalApi.md#prepare_garbage_collection_uncommitted) | **POST** /repositories/{repository}/gc/prepare_uncommited | save repository uncommitted metadata for garbage collection
 *InternalApi* | [**restore_refs**](docs/InternalApi.md#restore_refs) | **PUT** /repositories/{repository}/refs/restore | Restore repository refs (tags, commits, branches) from object store. Deprecated: a new API will introduce long running operations 
 *InternalApi* | [**set_garbage_collection_rules_preflight**](docs/InternalApi.md#set_garbage_collection_rules_preflight) | **GET** /repositories/{repository}/gc/rules/set_allowed | 
+*InternalApi* | [**set_repository_metadata**](docs/InternalApi.md#set_repository_metadata) | **POST** /repositories/{repository}/metadata | set repository metadata
 *InternalApi* | [**setup**](docs/InternalApi.md#setup) | **POST** /setup_lakefs | setup lakeFS and create a first user
 *InternalApi* | [**setup_comm_prefs**](docs/InternalApi.md#setup_comm_prefs) | **POST** /setup_comm_prefs | setup communications preferences
 *InternalApi* | [**stage_object**](docs/InternalApi.md#stage_object) | **PUT** /repositories/{repository}/branches/{branch}/objects | stage an object&#39;s metadata for the given branch
@@ -275,6 +279,7 @@ Class | Method | HTTP request | Description
  - [ImportCreationResponse](docs/ImportCreationResponse.md)
  - [ImportLocation](docs/ImportLocation.md)
  - [ImportStatus](docs/ImportStatus.md)
+ - [InstallationUsageReport](docs/InstallationUsageReport.md)
  - [InternalDeleteBranchProtectionRuleRequest](docs/InternalDeleteBranchProtectionRuleRequest.md)
  - [LoginConfig](docs/LoginConfig.md)
  - [LoginInformation](docs/LoginInformation.md)
@@ -307,6 +312,8 @@ Class | Method | HTTP request | Description
  - [RepositoryCreation](docs/RepositoryCreation.md)
  - [RepositoryDumpStatus](docs/RepositoryDumpStatus.md)
  - [RepositoryList](docs/RepositoryList.md)
+ - [RepositoryMetadataKeys](docs/RepositoryMetadataKeys.md)
+ - [RepositoryMetadataSet](docs/RepositoryMetadataSet.md)
  - [RepositoryRestoreStatus](docs/RepositoryRestoreStatus.md)
  - [ResetCreation](docs/ResetCreation.md)
  - [RevertCreation](docs/RevertCreation.md)
@@ -324,6 +331,7 @@ Class | Method | HTTP request | Description
  - [UnderlyingObjectProperties](docs/UnderlyingObjectProperties.md)
  - [UpdateToken](docs/UpdateToken.md)
  - [UploadPart](docs/UploadPart.md)
+ - [UsageReport](docs/UsageReport.md)
  - [User](docs/User.md)
  - [UserCreation](docs/UserCreation.md)
  - [UserList](docs/UserList.md)

@@ -19,24 +19,15 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from typing import Dict
+from pydantic import BaseModel, Field, StrictStr
 
-class ResetCreation(BaseModel):
+class RepositoryMetadataSet(BaseModel):
     """
-    ResetCreation
+    RepositoryMetadataSet
     """
-    type: StrictStr = Field(..., description="What to reset according to path.")
-    path: Optional[StrictStr] = None
-    force: Optional[StrictBool] = False
-    __properties = ["type", "path", "force"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('object', 'common_prefix', 'reset'):
-            raise ValueError("must be one of enum values ('object', 'common_prefix', 'reset')")
-        return value
+    metadata: Dict[str, StrictStr] = Field(...)
+    __properties = ["metadata"]
 
     class Config:
         """Pydantic configuration"""
@@ -52,8 +43,8 @@ class ResetCreation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ResetCreation:
-        """Create an instance of ResetCreation from a JSON string"""
+    def from_json(cls, json_str: str) -> RepositoryMetadataSet:
+        """Create an instance of RepositoryMetadataSet from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -65,18 +56,16 @@ class ResetCreation(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ResetCreation:
-        """Create an instance of ResetCreation from a dict"""
+    def from_dict(cls, obj: dict) -> RepositoryMetadataSet:
+        """Create an instance of RepositoryMetadataSet from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ResetCreation.parse_obj(obj)
+            return RepositoryMetadataSet.parse_obj(obj)
 
-        _obj = ResetCreation.parse_obj({
-            "type": obj.get("type"),
-            "path": obj.get("path"),
-            "force": obj.get("force") if obj.get("force") is not None else False
+        _obj = RepositoryMetadataSet.parse_obj({
+            "metadata": obj.get("metadata")
         })
         return _obj
 

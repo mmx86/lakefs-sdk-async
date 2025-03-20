@@ -19,24 +19,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from typing import List
+from pydantic import BaseModel, Field, StrictStr, conlist
+from lakefs_sdk_async.models.usage_report import UsageReport
 
-class ResetCreation(BaseModel):
+class InstallationUsageReport(BaseModel):
     """
-    ResetCreation
+    InstallationUsageReport
     """
-    type: StrictStr = Field(..., description="What to reset according to path.")
-    path: Optional[StrictStr] = None
-    force: Optional[StrictBool] = False
-    __properties = ["type", "path", "force"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('object', 'common_prefix', 'reset'):
-            raise ValueError("must be one of enum values ('object', 'common_prefix', 'reset')")
-        return value
+    installation_id: StrictStr = Field(...)
+    reports: conlist(UsageReport) = Field(...)
+    __properties = ["installation_id", "reports"]
 
     class Config:
         """Pydantic configuration"""
@@ -52,8 +45,8 @@ class ResetCreation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ResetCreation:
-        """Create an instance of ResetCreation from a JSON string"""
+    def from_json(cls, json_str: str) -> InstallationUsageReport:
+        """Create an instance of InstallationUsageReport from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -62,21 +55,27 @@ class ResetCreation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in reports (list)
+        _items = []
+        if self.reports:
+            for _item in self.reports:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['reports'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ResetCreation:
-        """Create an instance of ResetCreation from a dict"""
+    def from_dict(cls, obj: dict) -> InstallationUsageReport:
+        """Create an instance of InstallationUsageReport from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ResetCreation.parse_obj(obj)
+            return InstallationUsageReport.parse_obj(obj)
 
-        _obj = ResetCreation.parse_obj({
-            "type": obj.get("type"),
-            "path": obj.get("path"),
-            "force": obj.get("force") if obj.get("force") is not None else False
+        _obj = InstallationUsageReport.parse_obj({
+            "installation_id": obj.get("installation_id"),
+            "reports": [UsageReport.from_dict(_item) for _item in obj.get("reports")] if obj.get("reports") is not None else None
         })
         return _obj
 
