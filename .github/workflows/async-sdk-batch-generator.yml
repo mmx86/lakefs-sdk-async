@@ -12,13 +12,6 @@ jobs:
   generate-async-lakefs-sdk:
     runs-on: ubuntu-latest
     steps: 
-      - name: Checkout lakefs-sdk-async
-        uses: actions/checkout@v4
-        with:
-          path: lakefs-sdk-async
-      - name: Checkout lakefs
-        run: |
-          git checkout
       - name: Validate input and set env.
         run: |
           set -eux
