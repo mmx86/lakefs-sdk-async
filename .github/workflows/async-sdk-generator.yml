@@ -64,6 +64,7 @@ jobs:
             echo "No changes to commit."
           fi
           gitcd push origin master
+          gitcd tag "$TAG"
           gitcd push origin "$TAG"
 
 
