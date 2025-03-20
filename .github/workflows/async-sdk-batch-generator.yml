@@ -23,7 +23,7 @@ jobs:
           path: lakefs
       - name: Validate input and set env.
         run: |
-          if ${{ github.event.inputs.version_from }} != ''; then
+          if "${{ github.event.inputs.version_from }}" != ''; then
             # TODO: validate that version exists.
             echo "VERSION_FROM=${{ github.event.inputs.version_from }}" >> $GITHUB_ENV
           else
