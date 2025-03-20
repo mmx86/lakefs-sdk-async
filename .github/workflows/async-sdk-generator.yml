@@ -61,7 +61,7 @@ jobs:
           if ! gitcd diff-index --quiet HEAD; then
             gitcd commit -m "generated new version ${VERSION}" 
           else
-            echo "no changes"
+            echo "No changes to commit."
           fi
           gitcd push origin master
           gitcd push origin "$TAG"
