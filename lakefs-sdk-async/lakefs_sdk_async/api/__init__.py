@@ -13,6 +13,7 @@ from lakefs_sdk_async.api.import_api import ImportApi
 from lakefs_sdk_async.api.internal_api import InternalApi
 from lakefs_sdk_async.api.metadata_api import MetadataApi
 from lakefs_sdk_async.api.objects_api import ObjectsApi
+from lakefs_sdk_async.api.pulls_api import PullsApi
 from lakefs_sdk_async.api.refs_api import RefsApi
 from lakefs_sdk_async.api.repositories_api import RepositoriesApi
 from lakefs_sdk_async.api.staging_api import StagingApi
