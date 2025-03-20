@@ -19,11 +19,13 @@ on:
 jobs:
   generate-async-lakefs-sdk:
     env:
-      VERSION: ${{ inputs.version }}
+      VERSION: ${{ github.event.inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Print env
         run: |
+          echo '${{ toJson(github.event.inputs) }}'
+          echo '${{ toJson(inputs) }}'
           echo "Version: $VERSION"
           [[ -z "$VERSION" ]] && { echo "VERSION is empty" ; exit 1; }
       - name: Checkout lakefs-sdk-async
