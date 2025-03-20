@@ -33,13 +33,15 @@ jobs:
           # Set output
           echo "tags=$NEW_TAGS_JSON" >> $GITHUB_OUTPUT
   test-tags:
-    needs: prepare-tags
-    runs-on: ubuntu-latest
     env: 
       VERSION: ${{ matrix.tag }}
+    needs: prepare-tags
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         tag: ${{ fromJSON(needs.prepare-tags.outputs.tags-json) }}
+      fail-fast: true  # Fail whole matrix on error
+      max-parallel: 1
     steps:
       - name: Print tag
         run: |
