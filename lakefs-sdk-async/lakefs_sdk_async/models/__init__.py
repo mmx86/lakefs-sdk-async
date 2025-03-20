@@ -40,6 +40,7 @@ from lakefs_sdk_async.models.diff import Diff
 from lakefs_sdk_async.models.diff_list import DiffList
 from lakefs_sdk_async.models.error import Error
 from lakefs_sdk_async.models.error_no_acl import ErrorNoACL
+from lakefs_sdk_async.models.external_login_information import ExternalLoginInformation
 from lakefs_sdk_async.models.external_principal import ExternalPrincipal
 from lakefs_sdk_async.models.external_principal_creation import ExternalPrincipalCreation
 from lakefs_sdk_async.models.external_principal_list import ExternalPrincipalList
