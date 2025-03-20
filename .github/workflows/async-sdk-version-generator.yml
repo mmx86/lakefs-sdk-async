@@ -1,6 +1,13 @@
 name: Generate one version
 
 on:
+  workflow_call:
+    inputs:
+      version:
+        default: 'v1.0.0'
+        description: 'Version (lakefs must have corresponding tag)'
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       version:
