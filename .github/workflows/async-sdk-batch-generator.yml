@@ -17,18 +17,18 @@ jobs:
         with:
           path: lakefs-sdk-async
       - name: Checkout lakefs
-        uses: actions/checkout@v4
-        with:
-          repository: treeverse/lakeFS
-          path: lakefs
+        run: |
+          git checkout
       - name: Validate input and set env.
         run: |
+          set -eux
           if [ "${{ github.event.inputs.version_from }}" != '' ]; then
             # TODO: validate that version exists.
-            echo "VERSION_FROM=${{ github.event.inputs.version_from }}" >> $GITHUB_ENV
+            VERSION_FROM=${{ github.event.inputs.version_from }}"
           else
-            git -C $GITHUB_WORKSPACE/lakefs tag
+            VERSION_FROM=($(git ls-remote --tags git@github.com:treeverse/lakeFS.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1)
           fi
+          echo "VERSION_FROM=$VERSION_FROM" >> $GITHUB_ENV
       - name: Print env.
         run: |
           echo "VERSION_FROM=$VERSION_FROM"
