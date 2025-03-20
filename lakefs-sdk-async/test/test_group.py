@@ -16,9 +16,7 @@
 import unittest
 import datetime
 
-import lakefs_sdk_async
 from lakefs_sdk_async.models.group import Group  # noqa: E501
-from lakefs_sdk_async.rest import ApiException
 
 class TestGroup(unittest.TestCase):
     """Group unit test stubs"""
@@ -29,22 +27,22 @@ class TestGroup(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Group:
         """Test Group
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Group`
         """
-        model = lakefs_sdk_async.models.group.Group()  # noqa: E501
-        if include_optional :
+        model = Group()  # noqa: E501
+        if include_optional:
             return Group(
-                id = '', 
-                name = '', 
-                description = '', 
+                id = '',
+                name = '',
+                description = '',
                 creation_date = 56
             )
-        else :
+        else:
             return Group(
                 id = '',
                 creation_date = 56,

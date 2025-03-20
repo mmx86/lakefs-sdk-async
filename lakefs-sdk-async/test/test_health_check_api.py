@@ -15,21 +15,19 @@
 
 import unittest
 
-import lakefs_sdk_async
 from lakefs_sdk_async.api.health_check_api import HealthCheckApi  # noqa: E501
-from lakefs_sdk_async.rest import ApiException
 
 
 class TestHealthCheckApi(unittest.TestCase):
     """HealthCheckApi unit test stubs"""
 
-    def setUp(self):
-        self.api = lakefs_sdk_async.api.health_check_api.HealthCheckApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = HealthCheckApi()  # noqa: E501
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_health_check(self):
+    def test_health_check(self) -> None:
         """Test case for health_check
 
         """

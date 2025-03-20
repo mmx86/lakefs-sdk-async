@@ -16,9 +16,7 @@
 import unittest
 import datetime
 
-import lakefs_sdk_async
 from lakefs_sdk_async.models.pagination import Pagination  # noqa: E501
-from lakefs_sdk_async.rest import ApiException
 
 class TestPagination(unittest.TestCase):
     """Pagination unit test stubs"""
@@ -29,22 +27,22 @@ class TestPagination(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Pagination:
         """Test Pagination
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Pagination`
         """
-        model = lakefs_sdk_async.models.pagination.Pagination()  # noqa: E501
-        if include_optional :
+        model = Pagination()  # noqa: E501
+        if include_optional:
             return Pagination(
-                has_more = True, 
-                next_offset = '', 
-                results = 0, 
+                has_more = True,
+                next_offset = '',
+                results = 0,
                 max_per_page = 0
             )
-        else :
+        else:
             return Pagination(
                 has_more = True,
                 next_offset = '',
