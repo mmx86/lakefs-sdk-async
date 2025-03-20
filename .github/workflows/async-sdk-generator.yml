@@ -41,12 +41,12 @@ jobs:
           cat $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
       - name: Patch makefile (package name and output dir)
         run: |
-          sed -i "s/--package-name lakefs_sdk/--package-name lakefs_sdk_async/g"
+          sed -i "s/--package-name lakefs_sdk/--package-name lakefs_sdk_async/g" $GITHUB_WORKSPACE/lakefs/Makefile
       - name: Generate
         run: |
-          rm -rf lakefs-sdk-async/lakefs-sdk-async 
-          make -C lakefs/ sdk-python
-          cp -r lakefs/clients/python lakefs-sdk-async/lakefs_sdk_async
+          rm -rf $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async 
+          make -C $GITHUB_WORKSPACE/lakefs sdk-python
+          cp -r $GITHUB_WORKSPACE/lakefs/clients/python $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs_sdk_async
       - name: Ok check
         run: |
           ls -lha lakefs-sdk-async
