@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import lakefs_sdk_async
-from lakefs_sdk_async.models.revert_creation import RevertCreation  # noqa: E501
+from lakefs_sdk_async.models.commit_overrides import CommitOverrides  # noqa: E501
 from lakefs_sdk_async.rest import ApiException
 
-class TestRevertCreation(unittest.TestCase):
-    """RevertCreation unit test stubs"""
+class TestCommitOverrides(unittest.TestCase):
+    """CommitOverrides unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,34 +30,27 @@ class TestRevertCreation(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test RevertCreation
+        """Test CommitOverrides
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `RevertCreation`
+        # uncomment below to create an instance of `CommitOverrides`
         """
-        model = lakefs_sdk_async.models.revert_creation.RevertCreation()  # noqa: E501
+        model = lakefs_sdk_async.models.commit_overrides.CommitOverrides()  # noqa: E501
         if include_optional :
-            return RevertCreation(
-                ref = '', 
-                commit_overrides = lakefs_sdk_async.models.commit_overrides.CommitOverrides(
-                    message = '', 
-                    metadata = {
-                        'key' : ''
-                        }, ), 
-                parent_number = 56, 
-                force = True, 
-                allow_empty = True
+            return CommitOverrides(
+                message = '', 
+                metadata = {
+                    'key' : ''
+                    }
             )
         else :
-            return RevertCreation(
-                ref = '',
-                parent_number = 56,
+            return CommitOverrides(
         )
         """
 
-    def testRevertCreation(self):
-        """Test RevertCreation"""
+    def testCommitOverrides(self):
+        """Test CommitOverrides"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
