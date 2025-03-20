@@ -610,15 +610,15 @@ class ExperimentalApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def create_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : ExternalPrincipalCreation, **kwargs) -> None:  # noqa: E501
+    async def create_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : Optional[ExternalPrincipalCreation] = None, **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def create_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : ExternalPrincipalCreation, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def create_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : Optional[ExternalPrincipalCreation] = None, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def create_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : ExternalPrincipalCreation, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def create_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : Optional[ExternalPrincipalCreation] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """attach external principal to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -631,7 +631,7 @@ class ExperimentalApi(object):
         :type user_id: str
         :param principal_id: (required)
         :type principal_id: str
-        :param external_principal_creation: (required)
+        :param external_principal_creation:
         :type external_principal_creation: ExternalPrincipalCreation
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -652,7 +652,7 @@ class ExperimentalApi(object):
         return self.create_user_external_principal_with_http_info(user_id, principal_id, external_principal_creation, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_user_external_principal_with_http_info(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : ExternalPrincipalCreation, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_user_external_principal_with_http_info(self, user_id : StrictStr, principal_id : StrictStr, external_principal_creation : Optional[ExternalPrincipalCreation] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """attach external principal to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -665,7 +665,7 @@ class ExperimentalApi(object):
         :type user_id: str
         :param principal_id: (required)
         :type principal_id: str
-        :param external_principal_creation: (required)
+        :param external_principal_creation:
         :type external_principal_creation: ExternalPrincipalCreation
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -728,12 +728,12 @@ class ExperimentalApi(object):
         if _params['user_id']:
             _path_params['userId'] = _params['user_id']
 
-        if _params['principal_id']:
-            _path_params['principalId'] = _params['principal_id']
-
 
         # process the query parameters
         _query_params = []
+        if _params.get('principal_id') is not None:  # noqa: E501
+            _query_params.append(('principalId', _params['principal_id']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -761,7 +761,7 @@ class ExperimentalApi(object):
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/auth/users/{userId}/external/principal/{principalId}', 'POST',
+            '/auth/users/{userId}/external/principals', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -891,12 +891,12 @@ class ExperimentalApi(object):
         if _params['user_id']:
             _path_params['userId'] = _params['user_id']
 
-        if _params['principal_id']:
-            _path_params['principalId'] = _params['principal_id']
-
 
         # process the query parameters
         _query_params = []
+        if _params.get('principal_id') is not None:  # noqa: E501
+            _query_params.append(('principalId', _params['principal_id']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -914,7 +914,7 @@ class ExperimentalApi(object):
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/auth/users/{userId}/external/principal/{principalId}', 'DELETE',
+            '/auth/users/{userId}/external/principals', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -931,25 +931,23 @@ class ExperimentalApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def get_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, **kwargs) -> ExternalPrincipal:  # noqa: E501
+    async def get_external_principal(self, principal_id : StrictStr, **kwargs) -> ExternalPrincipal:  # noqa: E501
         ...
 
     @overload
-    def get_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, async_req: Optional[bool]=True, **kwargs) -> ExternalPrincipal:  # noqa: E501
+    def get_external_principal(self, principal_id : StrictStr, async_req: Optional[bool]=True, **kwargs) -> ExternalPrincipal:  # noqa: E501
         ...
 
     @validate_arguments
-    def get_user_external_principal(self, user_id : StrictStr, principal_id : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[ExternalPrincipal, Awaitable[ExternalPrincipal]]:  # noqa: E501
-        """get external principal of a user  # noqa: E501
+    def get_external_principal(self, principal_id : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[ExternalPrincipal, Awaitable[ExternalPrincipal]]:  # noqa: E501
+        """describe external principal by id  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_user_external_principal(user_id, principal_id, async_req=True)
+        >>> thread = api.get_external_principal(principal_id, async_req=True)
         >>> result = thread.get()
 
-        :param user_id: (required)
-        :type user_id: str
         :param principal_id: (required)
         :type principal_id: str
         :param async_req: Whether to execute the request asynchronously.
@@ -965,23 +963,21 @@ class ExperimentalApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_user_external_principal_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+            raise ValueError("Error! Please call the get_external_principal_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.get_user_external_principal_with_http_info(user_id, principal_id, **kwargs)  # noqa: E501
+        return self.get_external_principal_with_http_info(principal_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_user_external_principal_with_http_info(self, user_id : StrictStr, principal_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
-        """get external principal of a user  # noqa: E501
+    def get_external_principal_with_http_info(self, principal_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
+        """describe external principal by id  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_user_external_principal_with_http_info(user_id, principal_id, async_req=True)
+        >>> thread = api.get_external_principal_with_http_info(principal_id, async_req=True)
         >>> result = thread.get()
 
-        :param user_id: (required)
-        :type user_id: str
         :param principal_id: (required)
         :type principal_id: str
         :param async_req: Whether to execute the request asynchronously.
@@ -1012,7 +1008,6 @@ class ExperimentalApi(object):
         _params = locals()
 
         _all_params = [
-            'user_id',
             'principal_id'
         ]
         _all_params.extend(
@@ -1032,7 +1027,7 @@ class ExperimentalApi(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_user_external_principal" % _key
+                    " to method get_external_principal" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -1041,15 +1036,12 @@ class ExperimentalApi(object):
 
         # process the path parameters
         _path_params = {}
-        if _params['user_id']:
-            _path_params['userId'] = _params['user_id']
-
-        if _params['principal_id']:
-            _path_params['principalId'] = _params['principal_id']
-
 
         # process the query parameters
         _query_params = []
+        if _params.get('principal_id') is not None:  # noqa: E501
+            _query_params.append(('principalId', _params['principal_id']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1072,7 +1064,7 @@ class ExperimentalApi(object):
         }
 
         return self.api_client.call_api(
-            '/auth/users/{userId}/external/principal/{principalId}', 'GET',
+            '/auth/external/principals', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1417,7 +1409,7 @@ class ExperimentalApi(object):
         }
 
         return self.api_client.call_api(
-            '/auth/users/{userId}/external/principals', 'GET',
+            '/auth/users/{userId}/external/principals/ls', 'GET',
             _path_params,
             _query_params,
             _header_params,
