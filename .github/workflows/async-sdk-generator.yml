@@ -46,11 +46,18 @@ jobs:
         run: |
           rm -rf $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async 
           make -C $GITHUB_WORKSPACE/lakefs sdk-python
-          cp -r $GITHUB_WORKSPACE/lakefs/clients/python $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs_sdk_async
+          cp -r $GITHUB_WORKSPACE/lakefs/clients/python $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async
       - name: Ok check
         run: |
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
-          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs_sdk_async
+          ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async
+      - name: New commit
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add -A
+          git commit -m "generated new version ${VERSION}"
+          git push
 
 
 #jobs:
