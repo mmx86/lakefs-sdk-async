@@ -43,8 +43,6 @@ jobs:
 
   generate-new-version:
     needs: setup
-    env:
-      VERSION: ${{ matrix.version }}
     strategy:
       matrix:
         version: ${{ fromJSON(needs.setup.outputs.versions-json) }}
