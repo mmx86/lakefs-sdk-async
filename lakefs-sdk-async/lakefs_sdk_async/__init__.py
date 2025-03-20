@@ -24,6 +24,7 @@ from lakefs_sdk_async.api.branches_api import BranchesApi
 from lakefs_sdk_async.api.commits_api import CommitsApi
 from lakefs_sdk_async.api.config_api import ConfigApi
 from lakefs_sdk_async.api.experimental_api import ExperimentalApi
+from lakefs_sdk_async.api.external_api import ExternalApi
 from lakefs_sdk_async.api.health_check_api import HealthCheckApi
 from lakefs_sdk_async.api.import_api import ImportApi
 from lakefs_sdk_async.api.internal_api import InternalApi
@@ -71,6 +72,9 @@ from lakefs_sdk_async.models.diff import Diff
 from lakefs_sdk_async.models.diff_list import DiffList
 from lakefs_sdk_async.models.error import Error
 from lakefs_sdk_async.models.error_no_acl import ErrorNoACL
+from lakefs_sdk_async.models.external_principal import ExternalPrincipal
+from lakefs_sdk_async.models.external_principal_creation import ExternalPrincipalCreation
+from lakefs_sdk_async.models.external_principal_list import ExternalPrincipalList
 from lakefs_sdk_async.models.find_merge_base_result import FindMergeBaseResult
 from lakefs_sdk_async.models.garbage_collection_config import GarbageCollectionConfig
 from lakefs_sdk_async.models.garbage_collection_prepare_response import GarbageCollectionPrepareResponse

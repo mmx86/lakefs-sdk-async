@@ -7,6 +7,7 @@ from lakefs_sdk_async.api.branches_api import BranchesApi
 from lakefs_sdk_async.api.commits_api import CommitsApi
 from lakefs_sdk_async.api.config_api import ConfigApi
 from lakefs_sdk_async.api.experimental_api import ExperimentalApi
+from lakefs_sdk_async.api.external_api import ExternalApi
 from lakefs_sdk_async.api.health_check_api import HealthCheckApi
 from lakefs_sdk_async.api.import_api import ImportApi
 from lakefs_sdk_async.api.internal_api import InternalApi
