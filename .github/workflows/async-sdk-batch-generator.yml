@@ -17,7 +17,7 @@ jobs:
           set -eux
           if [ "${{ github.event.inputs.version_from }}" != '' ]; then
             # TODO: validate that version exists.
-            VERSION_FROM=${{ github.event.inputs.version_from }}"
+            VERSION_FROM="${{ github.event.inputs.version_from }}"
           else
             VERSION_FROM=($(git ls-remote --tags git@github.com:mmx86/lakefs-sdk-async.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1)
           fi
