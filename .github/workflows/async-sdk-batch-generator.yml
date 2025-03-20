@@ -43,7 +43,7 @@ jobs:
     steps:
       - name: Print tag
         run: |
-          echo "Testing tag: ${{ $VERSION }}"
+          echo "Testing tag: ${VERSION}"
       
 
 # NOTE: Better semver sort
