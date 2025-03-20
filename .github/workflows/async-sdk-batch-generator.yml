@@ -42,6 +42,7 @@ jobs:
           echo "versions=$NEW_VERSIONS_JSON" >> $GITHUB_OUTPUT
 
   generate-new-version:
+    name: generate new versions
     needs: setup
     runs-on: ubuntu-latest
     strategy:
