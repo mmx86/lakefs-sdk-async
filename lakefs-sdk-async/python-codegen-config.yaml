@@ -3,5 +3,6 @@ files:
     templateType: SupportingFiles
     folder: lakefs_sdk
     destinationFilename: client.py
+
 library: asyncio
 
