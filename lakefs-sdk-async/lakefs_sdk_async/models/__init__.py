@@ -38,7 +38,6 @@ from lakefs_sdk_async.models.credentials_with_secret import CredentialsWithSecre
 from lakefs_sdk_async.models.current_user import CurrentUser
 from lakefs_sdk_async.models.diff import Diff
 from lakefs_sdk_async.models.diff_list import DiffList
-from lakefs_sdk_async.models.diff_properties import DiffProperties
 from lakefs_sdk_async.models.error import Error
 from lakefs_sdk_async.models.error_no_acl import ErrorNoACL
 from lakefs_sdk_async.models.find_merge_base_result import FindMergeBaseResult
@@ -63,15 +62,12 @@ from lakefs_sdk_async.models.merge import Merge
 from lakefs_sdk_async.models.merge_result import MergeResult
 from lakefs_sdk_async.models.meta_range_creation import MetaRangeCreation
 from lakefs_sdk_async.models.meta_range_creation_response import MetaRangeCreationResponse
-from lakefs_sdk_async.models.otf_diffs import OTFDiffs
 from lakefs_sdk_async.models.object_copy_creation import ObjectCopyCreation
 from lakefs_sdk_async.models.object_error import ObjectError
 from lakefs_sdk_async.models.object_error_list import ObjectErrorList
 from lakefs_sdk_async.models.object_stage_creation import ObjectStageCreation
 from lakefs_sdk_async.models.object_stats import ObjectStats
 from lakefs_sdk_async.models.object_stats_list import ObjectStatsList
-from lakefs_sdk_async.models.otf_diff_entry import OtfDiffEntry
-from lakefs_sdk_async.models.otf_diff_list import OtfDiffList
 from lakefs_sdk_async.models.pagination import Pagination
 from lakefs_sdk_async.models.path_list import PathList
 from lakefs_sdk_async.models.policy import Policy

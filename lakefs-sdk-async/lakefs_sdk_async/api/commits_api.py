@@ -211,6 +211,7 @@ class CommitsApi(object):
             '401': "Error",
             '403': "Error",
             '404': "Error",
+            '409': "Error",
             '412': "Error",
             '420': None,
         }
