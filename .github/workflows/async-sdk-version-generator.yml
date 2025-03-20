@@ -65,5 +65,5 @@ jobs:
           fi
           gitcd push origin master
           gitcd tag "$TAG"
-          gitcd push origin "$TAG"
+          gitcd push origin "$TAG" -f
 
