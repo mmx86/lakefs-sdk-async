@@ -1,27 +1,37 @@
-name: Generate range of versions.
+name: Generate range of versions
 
 on:
   workflow_dispatch:
     inputs:
       version_from:
-        description: 'Version to start from.'
+        description: 'Version to start from (optional). Starts with new if omitted.'
         required: false
         type: string
 
 jobs:
   generate-async-lakefs-sdk:
     runs-on: ubuntu-latest
-    steps:
+    steps: 
+      - name: Checkout lakefs-sdk-async
+        uses: actions/checkout@v4
+        with:
+          path: lakefs-sdk-async
+      - name: Checkout lakefs
+        uses: actions/checkout@v4
+        with:
+          repository: treeverse/lakeFS
+          path: lakefs
       - name: Validate input and set env.
         run: |
           if {{ github.event.inputs.version_from }} != ''; then
+            # TODO: validate that version exists.
             echo "VERSION_FROM=${{ github.event.inputs.version_from }}" >> $GITHUB_ENV
           else
-            echo "VERSION_FROM=${{ github.event.inputs.version_from }}" >> $GITHUB_ENV
+            git -C $GITHUB_WORKSPACE/lakefs tag
           fi
       - name: Print env.
         run: |
-          echo "Version from: $VERSION_FROM"
+          echo "VERSION_FROM=$VERSION_FROM"
 
 # git tag | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1
 # Better sort
