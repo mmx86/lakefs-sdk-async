@@ -4,12 +4,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-async-lakefs-sdk:
+  prepare-tags:
     runs-on: ubuntu-latest
+    outputs:
+      tags-json: ${{ steps.generate-tags.outputs.tags }}
     steps: 
       - name: Generate new versions
+        id: generate-tags
         run: |
           set -eux
+
+          # Get new tags.
           LATEST_DONE_TAG=$(git ls-remote --tags https://github.com/mmx86/lakefs-sdk-async.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1)
           NEW_TAGS=$(
             git ls-remote --tags https://github.com/treeverse/lakeFS.git \
@@ -21,23 +26,26 @@ jobs:
             | grep -v "^v0" \
             | awk -v target="$LATEST_DONE_TAG" '$1 == target { found=1; next } found { print }' \
           )
-          FIRST_TAG_TODO=$(echo $NEW_TAGS | head -n1)
+
+          # Convert newline-separated tags to JSON array
+          NEW_TAGS_JSON=$(echo "$NEW_TAGS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
+
+          # Set output
+          echo "tags=$NEW_TAGS_JSON" >> $GITHUB_OUTPUT
+  test-tags:
+    needs: prepare-tags
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tag: ${{ fromJSON(needs.prepare-tags.outputs.tags-json) }}
+    steps:
+      - name: Print tag
+        run: |
+          echo "Testing tag: ${{ matrix.tag }}"
+      
 
 # NOTE: Better semver sort
 # https://stackoverflow.com/a/40391207
-
-#jobs:
-#  log-the-inputs:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: |
-#          echo "Log level: $LEVEL"
-#          echo "Tags: $TAGS"
-#          echo "Environment: $ENVIRONMENT"
-#        env:
-#          LEVEL: ${{ inputs.logLevel }}
-#          TAGS: ${{ inputs.tags }}
-#          ENVIRONMENT: ${{ inputs.environment }}
 
 #jobs:
 #  setup-matrix:
