@@ -1,12 +1,7 @@
-name: Generate range of versions
+name: Generate new versions.
 
 on:
   workflow_dispatch:
-    inputs:
-      version_from:
-        description: 'Version to start from (optional). Starts with new if omitted.'
-        required: false
-        type: string
 
 jobs:
   generate-async-lakefs-sdk:
@@ -15,18 +10,20 @@ jobs:
       - name: Validate input and set env.
         run: |
           set -eux
-          ALL_VERSIONS=$(git ls-remote --tags https://github.com/treeverse/lakeFS.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0")
-          echo $ALL_VERSIONS
-          if [ "${{ github.event.inputs.version_from }}" != '' ]; then
-            # TODO: validate that version exists.
-            VERSION_FROM="${{ github.event.inputs.version_from }}"
-          else
-            # Get last version, for which generation has been completed and commited to repo.
-            LATEST_DONE_VERSION=$(git ls-remote --tags https://github.com/mmx86/lakefs-sdk-async.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1)
-          fi
+          LATEST_DONE_TAG=$(git ls-remote --tags https://github.com/mmx86/lakefs-sdk-async.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1)
+          NEW_TAGS=$(
+            git ls-remote --tags git@github.com:treeverse/lakeFS.git \
+            | sed -n 's#^.*refs/tags/##p' \
+            | sed 's/\^{}//' \
+            | sort -u \
+            | sort -V \
+            | grep "^v" \
+            | grep -v "^v0" \
+            | awk -v target="$LATEST_DONE_TAG" '$1 == target { found=1; next } found { print }' \
+          )
+          FIRST_TAG_TODO=$(echo $NEW_TAGS | head -n1)
 
-# git tag | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1
-# Better sort
+# NOTE: Better semver sort
 # https://stackoverflow.com/a/40391207
 
 #jobs:
