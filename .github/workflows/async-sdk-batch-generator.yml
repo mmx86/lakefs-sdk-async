@@ -1,4 +1,4 @@
-name: Generate async lakefs SDK for range of versions
+name: Generate range of versions.
 
 on:
   workflow_dispatch:
