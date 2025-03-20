@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import lakefs_sdk_async
-from lakefs_sdk_async.models.branch_creation import BranchCreation  # noqa: E501
+from lakefs_sdk_async.models.refs_restore import RefsRestore  # noqa: E501
 from lakefs_sdk_async.rest import ApiException
 
-class TestBranchCreation(unittest.TestCase):
-    """BranchCreation unit test stubs"""
+class TestRefsRestore(unittest.TestCase):
+    """RefsRestore unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,28 +30,30 @@ class TestBranchCreation(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test BranchCreation
+        """Test RefsRestore
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `BranchCreation`
+        # uncomment below to create an instance of `RefsRestore`
         """
-        model = lakefs_sdk_async.models.branch_creation.BranchCreation()  # noqa: E501
+        model = lakefs_sdk_async.models.refs_restore.RefsRestore()  # noqa: E501
         if include_optional :
-            return BranchCreation(
-                name = '', 
-                source = '', 
+            return RefsRestore(
+                commits_meta_range_id = '', 
+                tags_meta_range_id = '', 
+                branches_meta_range_id = '', 
                 force = True
             )
         else :
-            return BranchCreation(
-                name = '',
-                source = '',
+            return RefsRestore(
+                commits_meta_range_id = '',
+                tags_meta_range_id = '',
+                branches_meta_range_id = '',
         )
         """
 
-    def testBranchCreation(self):
-        """Test BranchCreation"""
+    def testRefsRestore(self):
+        """Test RefsRestore"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

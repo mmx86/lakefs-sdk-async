@@ -124,6 +124,7 @@ Name | Type | Description  | Notes
 **201** | the cherry-pick commit |  -  |
 **400** | Validation Error |  -  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **409** | Conflict Found |  -  |
 **420** | too many requests |  -  |
@@ -238,6 +239,7 @@ Name | Type | Description  | Notes
 **201** | reference |  -  |
 **400** | Validation Error |  -  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **409** | Resource Conflicts With Target |  -  |
 **420** | too many requests |  -  |
@@ -246,7 +248,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_branch**
-> delete_branch(repository, branch)
+> delete_branch(repository, branch, force=force)
 
 delete branch
 
@@ -311,10 +313,11 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
     api_instance = lakefs_sdk_async.BranchesApi(api_client)
     repository = 'repository_example' # str | 
     branch = 'branch_example' # str | 
+    force = False # bool |  (optional) (default to False)
 
     try:
         # delete branch
-        await api_instance.delete_branch(repository, branch)
+        await api_instance.delete_branch(repository, branch, force=force)
     except Exception as e:
         print("Exception when calling BranchesApi->delete_branch: %s\n" % e)
 ```
@@ -328,6 +331,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
  **branch** | **str**|  | 
+ **force** | **bool**|  | [optional] [default to False]
 
 ### Return type
 
@@ -808,7 +812,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | reset successful |  -  |
+**400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **420** | too many requests |  -  |
 **0** | Internal Server Error |  -  |
@@ -922,6 +928,7 @@ void (empty response body)
 **204** | revert successful |  -  |
 **400** | Validation Error |  -  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **409** | Conflict Found |  -  |
 **420** | too many requests |  -  |

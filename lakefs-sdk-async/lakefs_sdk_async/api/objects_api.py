@@ -213,6 +213,7 @@ class ObjectsApi(object):
             '201': "ObjectStats",
             '400': "Error",
             '401': "Error",
+            '403': "Error",
             '404': "Error",
             '420': None,
         }
@@ -235,21 +236,21 @@ class ObjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def delete_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], **kwargs) -> None:  # noqa: E501
+    async def delete_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], force : Optional[StrictBool] = None, **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def delete_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def delete_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], force : Optional[StrictBool] = None, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def delete_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def delete_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], force : Optional[StrictBool] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """delete object. Missing objects will not return a NotFound error.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_object(repository, branch, path, async_req=True)
+        >>> thread = api.delete_object(repository, branch, path, force, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -258,6 +259,8 @@ class ObjectsApi(object):
         :type branch: str
         :param path: relative to the branch (required)
         :type path: str
+        :param force:
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -274,16 +277,16 @@ class ObjectsApi(object):
             raise ValueError("Error! Please call the delete_object_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.delete_object_with_http_info(repository, branch, path, **kwargs)  # noqa: E501
+        return self.delete_object_with_http_info(repository, branch, path, force, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_object_with_http_info(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_object_with_http_info(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], force : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """delete object. Missing objects will not return a NotFound error.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_object_with_http_info(repository, branch, path, async_req=True)
+        >>> thread = api.delete_object_with_http_info(repository, branch, path, force, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -292,6 +295,8 @@ class ObjectsApi(object):
         :type branch: str
         :param path: relative to the branch (required)
         :type path: str
+        :param force:
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -322,7 +327,8 @@ class ObjectsApi(object):
         _all_params = [
             'repository',
             'branch',
-            'path'
+            'path',
+            'force'
         ]
         _all_params.extend(
             [
@@ -362,6 +368,9 @@ class ObjectsApi(object):
         if _params.get('path') is not None:  # noqa: E501
             _query_params.append(('path', _params['path']))
 
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -396,21 +405,21 @@ class ObjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def delete_objects(self, repository : StrictStr, branch : StrictStr, path_list : PathList, **kwargs) -> ObjectErrorList:  # noqa: E501
+    async def delete_objects(self, repository : StrictStr, branch : StrictStr, path_list : PathList, force : Optional[StrictBool] = None, **kwargs) -> ObjectErrorList:  # noqa: E501
         ...
 
     @overload
-    def delete_objects(self, repository : StrictStr, branch : StrictStr, path_list : PathList, async_req: Optional[bool]=True, **kwargs) -> ObjectErrorList:  # noqa: E501
+    def delete_objects(self, repository : StrictStr, branch : StrictStr, path_list : PathList, force : Optional[StrictBool] = None, async_req: Optional[bool]=True, **kwargs) -> ObjectErrorList:  # noqa: E501
         ...
 
     @validate_arguments
-    def delete_objects(self, repository : StrictStr, branch : StrictStr, path_list : PathList, async_req: Optional[bool]=None, **kwargs) -> Union[ObjectErrorList, Awaitable[ObjectErrorList]]:  # noqa: E501
+    def delete_objects(self, repository : StrictStr, branch : StrictStr, path_list : PathList, force : Optional[StrictBool] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ObjectErrorList, Awaitable[ObjectErrorList]]:  # noqa: E501
         """delete objects. Missing objects will not return a NotFound error.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_objects(repository, branch, path_list, async_req=True)
+        >>> thread = api.delete_objects(repository, branch, path_list, force, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -419,6 +428,8 @@ class ObjectsApi(object):
         :type branch: str
         :param path_list: (required)
         :type path_list: PathList
+        :param force:
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -435,16 +446,16 @@ class ObjectsApi(object):
             raise ValueError("Error! Please call the delete_objects_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.delete_objects_with_http_info(repository, branch, path_list, **kwargs)  # noqa: E501
+        return self.delete_objects_with_http_info(repository, branch, path_list, force, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_objects_with_http_info(self, repository : StrictStr, branch : StrictStr, path_list : PathList, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_objects_with_http_info(self, repository : StrictStr, branch : StrictStr, path_list : PathList, force : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """delete objects. Missing objects will not return a NotFound error.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_objects_with_http_info(repository, branch, path_list, async_req=True)
+        >>> thread = api.delete_objects_with_http_info(repository, branch, path_list, force, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -453,6 +464,8 @@ class ObjectsApi(object):
         :type branch: str
         :param path_list: (required)
         :type path_list: PathList
+        :param force:
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -483,7 +496,8 @@ class ObjectsApi(object):
         _all_params = [
             'repository',
             'branch',
-            'path_list'
+            'path_list',
+            'force'
         ]
         _all_params.extend(
             [
@@ -520,6 +534,9 @@ class ObjectsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1477,21 +1494,21 @@ class ObjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def upload_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, **kwargs) -> ObjectStats:  # noqa: E501
+    async def upload_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, force : Optional[StrictBool] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, **kwargs) -> ObjectStats:  # noqa: E501
         ...
 
     @overload
-    def upload_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, async_req: Optional[bool]=True, **kwargs) -> ObjectStats:  # noqa: E501
+    def upload_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, force : Optional[StrictBool] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, async_req: Optional[bool]=True, **kwargs) -> ObjectStats:  # noqa: E501
         ...
 
     @validate_arguments
-    def upload_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ObjectStats, Awaitable[ObjectStats]]:  # noqa: E501
+    def upload_object(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, force : Optional[StrictBool] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ObjectStats, Awaitable[ObjectStats]]:  # noqa: E501
         """upload_object  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_object(repository, branch, path, storage_class, if_none_match, content, async_req=True)
+        >>> thread = api.upload_object(repository, branch, path, storage_class, if_none_match, force, content, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -1504,6 +1521,8 @@ class ObjectsApi(object):
         :type storage_class: str
         :param if_none_match: Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. 
         :type if_none_match: str
+        :param force:
+        :type force: bool
         :param content: Only a single file per upload which must be named \\\"content\\\".
         :type content: bytearray
         :param async_req: Whether to execute the request asynchronously.
@@ -1522,16 +1541,16 @@ class ObjectsApi(object):
             raise ValueError("Error! Please call the upload_object_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.upload_object_with_http_info(repository, branch, path, storage_class, if_none_match, content, **kwargs)  # noqa: E501
+        return self.upload_object_with_http_info(repository, branch, path, storage_class, if_none_match, force, content, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def upload_object_with_http_info(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def upload_object_with_http_info(self, repository : StrictStr, branch : StrictStr, path : Annotated[StrictStr, Field(..., description="relative to the branch")], storage_class : Annotated[Optional[StrictStr], Field(description="Deprecated, this capability will not be supported in future releases.")] = None, if_none_match : Annotated[Optional[constr(strict=True)], Field(description="Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. ")] = None, force : Optional[StrictBool] = None, content : Annotated[Optional[Union[StrictBytes, StrictStr]], Field(description="Only a single file per upload which must be named \\\"content\\\".")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """upload_object  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_object_with_http_info(repository, branch, path, storage_class, if_none_match, content, async_req=True)
+        >>> thread = api.upload_object_with_http_info(repository, branch, path, storage_class, if_none_match, force, content, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -1544,6 +1563,8 @@ class ObjectsApi(object):
         :type storage_class: str
         :param if_none_match: Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases. 
         :type if_none_match: str
+        :param force:
+        :type force: bool
         :param content: Only a single file per upload which must be named \\\"content\\\".
         :type content: bytearray
         :param async_req: Whether to execute the request asynchronously.
@@ -1579,6 +1600,7 @@ class ObjectsApi(object):
             'path',
             'storage_class',
             'if_none_match',
+            'force',
             'content'
         ]
         _all_params.extend(
@@ -1621,6 +1643,9 @@ class ObjectsApi(object):
 
         if _params.get('storage_class') is not None:  # noqa: E501
             _query_params.append(('storageClass', _params['storage_class']))
+
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

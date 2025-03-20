@@ -19,21 +19,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Dict, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import Optional
+from pydantic import BaseModel, Field, StrictBool, StrictStr
 
-class ObjectStageCreation(BaseModel):
+class RefsRestore(BaseModel):
     """
-    ObjectStageCreation
+    RefsRestore
     """
-    physical_address: StrictStr = Field(...)
-    checksum: StrictStr = Field(...)
-    size_bytes: StrictInt = Field(...)
-    mtime: Optional[StrictInt] = Field(None, description="Unix Epoch in seconds")
-    metadata: Optional[Dict[str, StrictStr]] = None
-    content_type: Optional[StrictStr] = Field(None, description="Object media type")
+    commits_meta_range_id: StrictStr = Field(...)
+    tags_meta_range_id: StrictStr = Field(...)
+    branches_meta_range_id: StrictStr = Field(...)
     force: Optional[StrictBool] = False
-    __properties = ["physical_address", "checksum", "size_bytes", "mtime", "metadata", "content_type", "force"]
+    __properties = ["commits_meta_range_id", "tags_meta_range_id", "branches_meta_range_id", "force"]
 
     class Config:
         """Pydantic configuration"""
@@ -49,8 +46,8 @@ class ObjectStageCreation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ObjectStageCreation:
-        """Create an instance of ObjectStageCreation from a JSON string"""
+    def from_json(cls, json_str: str) -> RefsRestore:
+        """Create an instance of RefsRestore from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -62,21 +59,18 @@ class ObjectStageCreation(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ObjectStageCreation:
-        """Create an instance of ObjectStageCreation from a dict"""
+    def from_dict(cls, obj: dict) -> RefsRestore:
+        """Create an instance of RefsRestore from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ObjectStageCreation.parse_obj(obj)
+            return RefsRestore.parse_obj(obj)
 
-        _obj = ObjectStageCreation.parse_obj({
-            "physical_address": obj.get("physical_address"),
-            "checksum": obj.get("checksum"),
-            "size_bytes": obj.get("size_bytes"),
-            "mtime": obj.get("mtime"),
-            "metadata": obj.get("metadata"),
-            "content_type": obj.get("content_type"),
+        _obj = RefsRestore.parse_obj({
+            "commits_meta_range_id": obj.get("commits_meta_range_id"),
+            "tags_meta_range_id": obj.get("tags_meta_range_id"),
+            "branches_meta_range_id": obj.get("branches_meta_range_id"),
             "force": obj.get("force") if obj.get("force") is not None else False
         })
         return _obj
