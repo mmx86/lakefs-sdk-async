@@ -42,7 +42,7 @@ jobs:
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
       - name: Patch openapi generator config (use asyncio)
         run: |
-          echo -e "library: asyncio\n" >> $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
+          echo -e "\nlibrary: asyncio\n" >> $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
           cat $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
       - name: Patch makefile (package name and output dir)
         run: |
