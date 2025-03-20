@@ -7,16 +7,24 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      tags-json: ${{ steps.get-new-tags.outputs.tags }}
+      versions-json: ${{ steps.get-new-versions.outputs.versions }}
     steps: 
-      - name: Get new tags
-        id: get-new-tags
+      - name: Get new versions
+        id: get-new-versions
         run: |
           set -eux
 
-          # Get new tags.
-          LATEST_DONE_TAG=$(git ls-remote --tags https://github.com/mmx86/lakefs-sdk-async.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1)
-          NEW_TAGS=$(
+          # Get new versions.
+          LATEST_DONE_VERSION=$(
+            git ls-remote --tags https://github.com/mmx86/lakefs-sdk-async.git \
+            | sed -n 's#^.*refs/tags/##p' \
+            | sed 's/\^{}//' \
+            | sort --version-sort \
+            | grep "^v" \
+            | grep -v "^v0" \
+            | tail -n1 \
+          )
+          NEW_VERSIONS=$(
             git ls-remote --tags https://github.com/treeverse/lakeFS.git \
             | sed -n 's#^.*refs/tags/##p' \
             | sed 's/\^{}//' \
@@ -24,30 +32,24 @@ jobs:
             | sort -V \
             | grep "^v" \
             | grep -v "^v0" \
-            | awk -v target="$LATEST_DONE_TAG" '$1 == target { found=1; next } found { print }' \
+            | awk -v target="$LATEST_DONE_VERSION" '$1 == target { found=1; next } found { print }' \
           )
 
-          # Convert newline-separated tags to JSON array
-          NEW_TAGS_JSON=$(echo "$NEW_TAGS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
+          # Convert newline-separated versions to JSON array
+          NEW_VERSIONS_JSON=$(echo "$NEW_TAGS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
 
           # Set output
-          echo "tags=$NEW_TAGS_JSON" >> $GITHUB_OUTPUT
+          echo "versions=$NEW_VERSIONS_JSON" >> $GITHUB_OUTPUT
 
   generate-new-version:
-    env: 
-      VERSION: ${{ matrix.tag }}
     needs: setup
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tag: ${{ fromJSON(needs.setup.outputs.tags-json) }}
+        version: ${{ fromJSON(needs.setup.outputs.versions-json) }}
       fail-fast: true  # Fail whole matrix on error
       max-parallel: 1
-    steps:
-      - name: Print tag
-        run: |
-          echo "Testing tag: ${VERSION}"
-    #uses: OWNER/REPO/.github/workflows/reusable.yml@master
-    #with:
-    #  stage: ${{ matrix.environment }}
+    uses: OWNER/REPO/.github/workflows/reusable.yml@master
+    with:
+      version: ${{ matrix.version }}
       
