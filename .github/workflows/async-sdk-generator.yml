@@ -16,23 +16,41 @@ jobs:
       TAG: "v${{ github.event.inputs.version }}"
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Print env
+        run: |
           echo "Version: $VERSION"
           echo "Tag: $TAG"
-      - uses: actions/checkout@v4
+      - name: Checkout lakefs-sdk-async
+        uses: actions/checkout@v4
         with:
           path: lakefs-sdk-async
-      - uses: actions/checkout@v4
+      - name: Checkout lakefs
+        uses: actions/checkout@v4
         with:
           repository: treeverse/lakeFS
           path: lakefs
           ref: ${{ env.TAG }}
-      - run: |
+      - name: Ok check
+        run: |
           ls -lha $GITHUB_WORKSPACE
           ls -lha $GITHUB_WORKSPACE/lakefs
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
+      - name: Patch openapi generator config (use asyncio)
+        run: |
           echo -e "library: asyncio\n" >> $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
           cat $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
+      - name: Patch makefile (package name and output dir)
+        run: |
+          sed -i "s/--package-name lakefs_sdk/--package-name lakefs_sdk_async/g"
+      - name: Generate
+        run: |
+          rm -rf lakefs-sdk-async/lakefs-sdk-async 
+          make -C lakefs/ sdk-python
+          cp -r lakefs/clients/python lakefs-sdk-async/lakefs_sdk_async
+      - name: Ok check
+        run: |
+          ls -lha lakefs-sdk-async
+          ls -lha lakefs-sdk-async/lakefs-sdk-async
 
 #jobs:
 #  log-the-inputs:
