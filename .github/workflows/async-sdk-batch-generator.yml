@@ -7,7 +7,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      versions-json: ${{ steps.get-new-versions.outputs.versions }}
+      versions: ${{ steps.get-new-versions.outputs.versions }}
     steps: 
       - name: Get new versions
         id: get-new-versions
@@ -43,9 +43,10 @@ jobs:
 
   generate-new-version:
     needs: setup
+    if: ${{ needs.setup.outputs.versions != '[]' && needs.setup.outputs.versions != '' }}
     strategy:
       matrix:
-        version: ${{ fromJSON(needs.setup.outputs.versions-json) }}
+        version: ${{ fromJSON(needs.setup.outputs.versions }}
       fail-fast: true  # Fail whole matrix on error
       max-parallel: 1
     uses: mmx86/lakefs-sdk-async/.github/workflows/async-sdk-version-generator.yml@master
