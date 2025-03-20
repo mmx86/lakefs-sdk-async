@@ -24,8 +24,8 @@ jobs:
     steps:
       - name: Print env
         run: |
-          set -eux
           echo "Version: $VERSION"
+          env | sort
       - name: Checkout lakefs-sdk-async
         uses: actions/checkout@v4
         with:
