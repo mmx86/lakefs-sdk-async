@@ -19,7 +19,7 @@ on:
 jobs:
   generate-async-lakefs-sdk:
     env:
-      VERSION: ${{ github.event.inputs.version }}
+      VERSION: ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Print env
