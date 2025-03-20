@@ -116,6 +116,7 @@ from lakefs_sdk_async.models.presign_multipart_upload import PresignMultipartUpl
 from lakefs_sdk_async.models.pull_request import PullRequest
 from lakefs_sdk_async.models.pull_request_basic import PullRequestBasic
 from lakefs_sdk_async.models.pull_request_creation import PullRequestCreation
+from lakefs_sdk_async.models.pull_request_creation_response import PullRequestCreationResponse
 from lakefs_sdk_async.models.pull_requests_list import PullRequestsList
 from lakefs_sdk_async.models.range_metadata import RangeMetadata
 from lakefs_sdk_async.models.ref import Ref

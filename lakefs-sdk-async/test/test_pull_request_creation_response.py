@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import lakefs_sdk_async
-from lakefs_sdk_async.models.pull_request_creation import PullRequestCreation  # noqa: E501
+from lakefs_sdk_async.models.pull_request_creation_response import PullRequestCreationResponse  # noqa: E501
 from lakefs_sdk_async.rest import ApiException
 
-class TestPullRequestCreation(unittest.TestCase):
-    """PullRequestCreation unit test stubs"""
+class TestPullRequestCreationResponse(unittest.TestCase):
+    """PullRequestCreationResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,30 +30,25 @@ class TestPullRequestCreation(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PullRequestCreation
+        """Test PullRequestCreationResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PullRequestCreation`
+        # uncomment below to create an instance of `PullRequestCreationResponse`
         """
-        model = lakefs_sdk_async.models.pull_request_creation.PullRequestCreation()  # noqa: E501
+        model = lakefs_sdk_async.models.pull_request_creation_response.PullRequestCreationResponse()  # noqa: E501
         if include_optional :
-            return PullRequestCreation(
-                title = '', 
-                description = '', 
-                source_branch = '', 
-                destination_branch = ''
+            return PullRequestCreationResponse(
+                id = ''
             )
         else :
-            return PullRequestCreation(
-                title = '',
-                source_branch = '',
-                destination_branch = '',
+            return PullRequestCreationResponse(
+                id = '',
         )
         """
 
-    def testPullRequestCreation(self):
-        """Test PullRequestCreation"""
+    def testPullRequestCreationResponse(self):
+        """Test PullRequestCreationResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
