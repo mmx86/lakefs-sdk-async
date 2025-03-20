@@ -19,9 +19,10 @@ jobs:
             # TODO: validate that version exists.
             VERSION_FROM="${{ github.event.inputs.version_from }}"
           else
+            # Get last version, for which generation has been completed and commited to repo.
             VERSION_FROM=($(git ls-remote --tags git@github.com:mmx86/lakefs-sdk-async.git | sed -n 's#^.*refs/tags/##p' | sed 's/\^{}//' | sort --version-sort | grep "^v" | grep -v "^v0" | tail -n1)
           fi
-          echo "VERSION_FROM=$VERSION_FROM" >> $GITHUB_ENV
+          echo "VERSION_FROM=${VERSION_FROM}" >> $GITHUB_ENV
       - name: Print env.
         run: |
           echo "VERSION_FROM=$VERSION_FROM"
