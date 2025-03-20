@@ -57,7 +57,13 @@ jobs:
           gitcd config --global user.name 'github-actions'
           gitcd config --global user.email 'github-actions@github.com'
           gitcd add -A
-          gitcd diff-index --quiet HEAD || (gitcd commit -m "generated new version ${VERSION}" && gitcd push)
+          if ! gitcd diff-index --quiet HEAD; then
+            git commit -m "Message here"
+            gitcd commit -m "generated new version ${VERSION}" 
+            gitcd push
+          else
+            echo "no changes"
+          fi
 
 
 #jobs:
