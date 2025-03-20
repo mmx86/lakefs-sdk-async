@@ -36,7 +36,7 @@ jobs:
           )
 
           # Convert newline-separated versions to JSON array
-          NEW_VERSIONS_JSON=$(echo "$NEW_TAGS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
+          NEW_VERSIONS_JSON=$(echo "$NEW_VERSIONS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
 
           # Set output
           echo "versions=$NEW_VERSIONS_JSON" >> $GITHUB_OUTPUT
