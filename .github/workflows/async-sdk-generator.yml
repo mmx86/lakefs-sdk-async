@@ -59,12 +59,12 @@ jobs:
           gitcd config --global user.email 'github-actions@github.com'
           gitcd add -A
           if ! gitcd diff-index --quiet HEAD; then
-            git commit -m "Message here"
             gitcd commit -m "generated new version ${VERSION}" 
-            gitcd push
           else
             echo "no changes"
           fi
+          gitcd push origin master
+          gitcd push origin "$TAG"
 
 
 #jobs:
