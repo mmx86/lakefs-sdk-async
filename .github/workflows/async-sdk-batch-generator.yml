@@ -36,13 +36,14 @@ jobs:
     needs: prepare-tags
     runs-on: ubuntu-latest
     env: 
+      VERSION: ${{ matrix.tag }}
     strategy:
       matrix:
         tag: ${{ fromJSON(needs.prepare-tags.outputs.tags-json) }}
     steps:
       - name: Print tag
         run: |
-          echo "Testing tag: ${{ matrix.tag }}"
+          echo "Testing tag: ${{ $VERSION }}"
       
 
 # NOTE: Better semver sort
