@@ -35,6 +35,7 @@ jobs:
   test-tags:
     needs: prepare-tags
     runs-on: ubuntu-latest
+    env: 
     strategy:
       matrix:
         tag: ${{ fromJSON(needs.prepare-tags.outputs.tags-json) }}
