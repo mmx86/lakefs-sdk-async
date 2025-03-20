@@ -4,5 +4,8 @@ files:
     folder: lakefs_sdk
     destinationFilename: client.py
 
+  requirements.mustache:
+    templateType: SupportingFiles
+    destinationFilename: requirements.txt
 library: asyncio
 

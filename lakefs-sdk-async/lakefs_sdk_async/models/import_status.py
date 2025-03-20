@@ -20,7 +20,10 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+try:
+    from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr
+except ImportError:
+    from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
 from lakefs_sdk_async.models.commit import Commit
 from lakefs_sdk_async.models.error import Error
 
