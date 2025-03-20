@@ -53,6 +53,7 @@ jobs:
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async
       - name: New commit
         run: |
+          shopt -s expand_aliases
           alias gitcd='git -C $GITHUB_WORKSPACE/lakefs-sdk-async'
           gitcd config --global user.name 'github-actions'
           gitcd config --global user.email 'github-actions@github.com'
