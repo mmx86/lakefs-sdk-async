@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "lakefs-sdk"
-VERSION = "1.19.0"
+VERSION = "1.20.0"
 # To install the library, run the following
 #
 # python setup.py install
@@ -26,7 +26,7 @@ PYTHON_REQUIRES = ">=3.7"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 2.1.0",
     "python-dateutil",
-    "pydantic >= 1.10.5, < 2",
+    "pydantic >= 1.10.5",
     "aenum"
 ]
 
