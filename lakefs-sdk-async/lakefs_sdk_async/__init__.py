@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.34.0"
+__version__ = "1.35.0"
 
 # import apis into sdk package
 from lakefs_sdk_async.api.actions_api import ActionsApi
@@ -30,6 +30,7 @@ from lakefs_sdk_async.api.import_api import ImportApi
 from lakefs_sdk_async.api.internal_api import InternalApi
 from lakefs_sdk_async.api.metadata_api import MetadataApi
 from lakefs_sdk_async.api.objects_api import ObjectsApi
+from lakefs_sdk_async.api.pulls_api import PullsApi
 from lakefs_sdk_async.api.refs_api import RefsApi
 from lakefs_sdk_async.api.repositories_api import RepositoriesApi
 from lakefs_sdk_async.api.staging_api import StagingApi
@@ -112,6 +113,10 @@ from lakefs_sdk_async.models.policy_list import PolicyList
 from lakefs_sdk_async.models.prepare_gc_uncommitted_request import PrepareGCUncommittedRequest
 from lakefs_sdk_async.models.prepare_gc_uncommitted_response import PrepareGCUncommittedResponse
 from lakefs_sdk_async.models.presign_multipart_upload import PresignMultipartUpload
+from lakefs_sdk_async.models.pull_request import PullRequest
+from lakefs_sdk_async.models.pull_request_basic import PullRequestBasic
+from lakefs_sdk_async.models.pull_request_creation import PullRequestCreation
+from lakefs_sdk_async.models.pull_requests_list import PullRequestsList
 from lakefs_sdk_async.models.range_metadata import RangeMetadata
 from lakefs_sdk_async.models.ref import Ref
 from lakefs_sdk_async.models.ref_list import RefList
