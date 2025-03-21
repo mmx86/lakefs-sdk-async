@@ -19,21 +19,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+
 try:
     from pydantic.v1 import BaseModel, Field, StrictStr
 except ImportError:
     from pydantic import BaseModel, Field, StrictStr
 
-class PullRequestCreation(BaseModel):
+class PullRequestCreationResponse(BaseModel):
     """
-    PullRequestCreation
+    PullRequestCreationResponse
     """
-    title: StrictStr = Field(...)
-    description: Optional[StrictStr] = None
-    source_branch: StrictStr = Field(...)
-    destination_branch: StrictStr = Field(...)
-    __properties = ["title", "description", "source_branch", "destination_branch"]
+    id: StrictStr = Field(..., description="ID of the pull request")
+    __properties = ["id"]
 
     class Config:
         """Pydantic configuration"""
@@ -49,8 +46,8 @@ class PullRequestCreation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PullRequestCreation:
-        """Create an instance of PullRequestCreation from a JSON string"""
+    def from_json(cls, json_str: str) -> PullRequestCreationResponse:
+        """Create an instance of PullRequestCreationResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -62,19 +59,16 @@ class PullRequestCreation(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PullRequestCreation:
-        """Create an instance of PullRequestCreation from a dict"""
+    def from_dict(cls, obj: dict) -> PullRequestCreationResponse:
+        """Create an instance of PullRequestCreationResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PullRequestCreation.parse_obj(obj)
+            return PullRequestCreationResponse.parse_obj(obj)
 
-        _obj = PullRequestCreation.parse_obj({
-            "title": obj.get("title"),
-            "description": obj.get("description"),
-            "source_branch": obj.get("source_branch"),
-            "destination_branch": obj.get("destination_branch")
+        _obj = PullRequestCreationResponse.parse_obj({
+            "id": obj.get("id")
         })
         return _obj
 
