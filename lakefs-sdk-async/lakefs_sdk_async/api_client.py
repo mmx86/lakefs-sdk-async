@@ -77,7 +77,7 @@ class ApiClient:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'lakefs-python-sdk/0.1.0-SNAPSHOT'
+        self.user_agent = 'lakefs-python-sdk/v1.50.0'
         self.client_side_validation = configuration.client_side_validation
 
     async def __aenter__(self):
