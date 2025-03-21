@@ -59,7 +59,7 @@ jobs:
           cp -r $GITHUB_WORKSPACE/lakefs/clients/python $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async
       - name: Post-generation patch of invalid pyproject.toml
         run: |
-          sed -i 's/pydantic = "^1.10.5, <2"/pydantic = ">= 1.10.5"/g' $GITHUB_WORKSPACE/lakefs/Makefile
+          sed -i 's/pydantic = "^1.10.5, <2"/pydantic = ">= 1.10.5"/g' $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async/pyproject.toml
       - name: Ok check
         run: |
           ls -lha $GITHUB_WORKSPACE/lakefs-sdk-async
