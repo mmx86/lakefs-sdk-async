@@ -52,7 +52,7 @@ jobs:
       - name: Generate
         run: |
           rm -rf $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async 
-          make -C $GITHUB_WORKSPACE/lakefs sdk-python
+          PACKAGE_VERSION="${VERSION}" make -C $GITHUB_WORKSPACE/lakefs sdk-python
           cp -r $GITHUB_WORKSPACE/lakefs/clients/python $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async
       - name: Ok check
         run: |
