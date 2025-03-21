@@ -47,6 +47,7 @@ docs/ImportCreation.md
 docs/ImportCreationResponse.md
 docs/ImportLocation.md
 docs/ImportStatus.md
+docs/InstallationUsageReport.md
 docs/InternalApi.md
 docs/InternalDeleteBranchProtectionRuleRequest.md
 docs/LoginConfig.md
@@ -84,6 +85,8 @@ docs/Repository.md
 docs/RepositoryCreation.md
 docs/RepositoryDumpStatus.md
 docs/RepositoryList.md
+docs/RepositoryMetadataKeys.md
+docs/RepositoryMetadataSet.md
 docs/RepositoryRestoreStatus.md
 docs/ResetCreation.md
 docs/RevertCreation.md
@@ -103,6 +106,7 @@ docs/TaskInfo.md
 docs/UnderlyingObjectProperties.md
 docs/UpdateToken.md
 docs/UploadPart.md
+docs/UsageReport.md
 docs/User.md
 docs/UserCreation.md
 docs/UserList.md
@@ -169,6 +173,7 @@ lakefs_sdk_async/models/import_creation.py
 lakefs_sdk_async/models/import_creation_response.py
 lakefs_sdk_async/models/import_location.py
 lakefs_sdk_async/models/import_status.py
+lakefs_sdk_async/models/installation_usage_report.py
 lakefs_sdk_async/models/internal_delete_branch_protection_rule_request.py
 lakefs_sdk_async/models/login_config.py
 lakefs_sdk_async/models/login_information.py
@@ -201,6 +206,8 @@ lakefs_sdk_async/models/repository.py
 lakefs_sdk_async/models/repository_creation.py
 lakefs_sdk_async/models/repository_dump_status.py
 lakefs_sdk_async/models/repository_list.py
+lakefs_sdk_async/models/repository_metadata_keys.py
+lakefs_sdk_async/models/repository_metadata_set.py
 lakefs_sdk_async/models/repository_restore_status.py
 lakefs_sdk_async/models/reset_creation.py
 lakefs_sdk_async/models/revert_creation.py
@@ -218,6 +225,7 @@ lakefs_sdk_async/models/task_info.py
 lakefs_sdk_async/models/underlying_object_properties.py
 lakefs_sdk_async/models/update_token.py
 lakefs_sdk_async/models/upload_part.py
+lakefs_sdk_async/models/usage_report.py
 lakefs_sdk_async/models/user.py
 lakefs_sdk_async/models/user_creation.py
 lakefs_sdk_async/models/user_list.py
@@ -277,6 +285,7 @@ test/test_import_creation.py
 test/test_import_creation_response.py
 test/test_import_location.py
 test/test_import_status.py
+test/test_installation_usage_report.py
 test/test_internal_api.py
 test/test_internal_delete_branch_protection_rule_request.py
 test/test_login_config.py
@@ -314,6 +323,8 @@ test/test_repository.py
 test/test_repository_creation.py
 test/test_repository_dump_status.py
 test/test_repository_list.py
+test/test_repository_metadata_keys.py
+test/test_repository_metadata_set.py
 test/test_repository_restore_status.py
 test/test_reset_creation.py
 test/test_revert_creation.py
@@ -333,6 +344,7 @@ test/test_task_info.py
 test/test_underlying_object_properties.py
 test/test_update_token.py
 test/test_upload_part.py
+test/test_usage_report.py
 test/test_user.py
 test/test_user_creation.py
 test/test_user_list.py

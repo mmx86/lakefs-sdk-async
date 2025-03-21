@@ -19,24 +19,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
 
-class ResetCreation(BaseModel):
-    """
-    ResetCreation
-    """
-    type: StrictStr = Field(..., description="What to reset according to path.")
-    path: Optional[StrictStr] = None
-    force: Optional[StrictBool] = False
-    __properties = ["type", "path", "force"]
+from pydantic import BaseModel, Field, StrictInt
 
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('object', 'common_prefix', 'reset'):
-            raise ValueError("must be one of enum values ('object', 'common_prefix', 'reset')")
-        return value
+class UsageReport(BaseModel):
+    """
+    UsageReport
+    """
+    year: StrictInt = Field(...)
+    month: StrictInt = Field(...)
+    count: StrictInt = Field(...)
+    __properties = ["year", "month", "count"]
 
     class Config:
         """Pydantic configuration"""
@@ -52,8 +45,8 @@ class ResetCreation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ResetCreation:
-        """Create an instance of ResetCreation from a JSON string"""
+    def from_json(cls, json_str: str) -> UsageReport:
+        """Create an instance of UsageReport from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -65,18 +58,18 @@ class ResetCreation(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ResetCreation:
-        """Create an instance of ResetCreation from a dict"""
+    def from_dict(cls, obj: dict) -> UsageReport:
+        """Create an instance of UsageReport from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ResetCreation.parse_obj(obj)
+            return UsageReport.parse_obj(obj)
 
-        _obj = ResetCreation.parse_obj({
-            "type": obj.get("type"),
-            "path": obj.get("path"),
-            "force": obj.get("force") if obj.get("force") is not None else False
+        _obj = UsageReport.parse_obj({
+            "year": obj.get("year"),
+            "month": obj.get("month"),
+            "count": obj.get("count")
         })
         return _obj
 

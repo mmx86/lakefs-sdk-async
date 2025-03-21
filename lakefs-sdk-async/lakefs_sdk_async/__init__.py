@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.7.0"
+__version__ = "1.8.0"
 
 # import apis into sdk package
 from lakefs_sdk_async.api.actions_api import ActionsApi
@@ -85,6 +85,7 @@ from lakefs_sdk_async.models.import_creation import ImportCreation
 from lakefs_sdk_async.models.import_creation_response import ImportCreationResponse
 from lakefs_sdk_async.models.import_location import ImportLocation
 from lakefs_sdk_async.models.import_status import ImportStatus
+from lakefs_sdk_async.models.installation_usage_report import InstallationUsageReport
 from lakefs_sdk_async.models.internal_delete_branch_protection_rule_request import InternalDeleteBranchProtectionRuleRequest
 from lakefs_sdk_async.models.login_config import LoginConfig
 from lakefs_sdk_async.models.login_information import LoginInformation
@@ -117,6 +118,8 @@ from lakefs_sdk_async.models.repository import Repository
 from lakefs_sdk_async.models.repository_creation import RepositoryCreation
 from lakefs_sdk_async.models.repository_dump_status import RepositoryDumpStatus
 from lakefs_sdk_async.models.repository_list import RepositoryList
+from lakefs_sdk_async.models.repository_metadata_keys import RepositoryMetadataKeys
+from lakefs_sdk_async.models.repository_metadata_set import RepositoryMetadataSet
 from lakefs_sdk_async.models.repository_restore_status import RepositoryRestoreStatus
 from lakefs_sdk_async.models.reset_creation import ResetCreation
 from lakefs_sdk_async.models.revert_creation import RevertCreation
@@ -134,6 +137,7 @@ from lakefs_sdk_async.models.task_info import TaskInfo
 from lakefs_sdk_async.models.underlying_object_properties import UnderlyingObjectProperties
 from lakefs_sdk_async.models.update_token import UpdateToken
 from lakefs_sdk_async.models.upload_part import UploadPart
+from lakefs_sdk_async.models.usage_report import UsageReport
 from lakefs_sdk_async.models.user import User
 from lakefs_sdk_async.models.user_creation import UserCreation
 from lakefs_sdk_async.models.user_list import UserList
