@@ -16,9 +16,7 @@
 import unittest
 import datetime
 
-import lakefs_sdk_async
 from lakefs_sdk_async.models.commit_creation import CommitCreation  # noqa: E501
-from lakefs_sdk_async.rest import ApiException
 
 class TestCommitCreation(unittest.TestCase):
     """CommitCreation unit test stubs"""
@@ -29,25 +27,25 @@ class TestCommitCreation(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CommitCreation:
         """Test CommitCreation
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CommitCreation`
         """
-        model = lakefs_sdk_async.models.commit_creation.CommitCreation()  # noqa: E501
-        if include_optional :
+        model = CommitCreation()  # noqa: E501
+        if include_optional:
             return CommitCreation(
-                message = '', 
+                message = '',
                 metadata = {
                     'key' : ''
-                    }, 
-                var_date = 56, 
-                allow_empty = True, 
+                    },
+                var_date = 56,
+                allow_empty = True,
                 force = True
             )
-        else :
+        else:
             return CommitCreation(
                 message = '',
         )
