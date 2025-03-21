@@ -69,11 +69,11 @@ jobs:
           gitcd config --global user.email 'github-actions@github.com'
           gitcd add -A
           if ! gitcd diff-index --quiet HEAD; then
-            gitcd commit -m "generated new version ${env.VERSION}" 
+            gitcd commit -m "generated new version ${{ env.VERSION }}" 
           else
             echo "No changes to commit."
           fi
           gitcd push origin master
-          gitcd tag "${{ env.VERSION }}"
-          gitcd push origin "${{ env.VERSION }}" -f
+          gitcd tag "${TAG}"
+          gitcd push origin "${TAG}" -f
 
