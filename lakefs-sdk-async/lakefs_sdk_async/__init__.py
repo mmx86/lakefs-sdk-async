@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.25.0"
+__version__ = "1.26.0"
 
 # import apis into sdk package
 from lakefs_sdk_async.api.actions_api import ActionsApi
@@ -61,6 +61,7 @@ from lakefs_sdk_async.models.comm_prefs_input import CommPrefsInput
 from lakefs_sdk_async.models.commit import Commit
 from lakefs_sdk_async.models.commit_creation import CommitCreation
 from lakefs_sdk_async.models.commit_list import CommitList
+from lakefs_sdk_async.models.commit_overrides import CommitOverrides
 from lakefs_sdk_async.models.commit_record_creation import CommitRecordCreation
 from lakefs_sdk_async.models.complete_presign_multipart_upload import CompletePresignMultipartUpload
 from lakefs_sdk_async.models.config import Config
