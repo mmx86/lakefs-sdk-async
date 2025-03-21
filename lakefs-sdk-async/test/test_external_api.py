@@ -16,38 +16,17 @@
 import unittest
 
 import lakefs_sdk_async
-from lakefs_sdk_async.api.experimental_api import ExperimentalApi  # noqa: E501
+from lakefs_sdk_async.api.external_api import ExternalApi  # noqa: E501
 from lakefs_sdk_async.rest import ApiException
 
 
-class TestExperimentalApi(unittest.TestCase):
-    """ExperimentalApi unit test stubs"""
+class TestExternalApi(unittest.TestCase):
+    """ExternalApi unit test stubs"""
 
     def setUp(self):
-        self.api = lakefs_sdk_async.api.experimental_api.ExperimentalApi()  # noqa: E501
+        self.api = lakefs_sdk_async.api.external_api.ExternalApi()  # noqa: E501
 
     def tearDown(self):
-        pass
-
-    def test_abort_presign_multipart_upload(self):
-        """Test case for abort_presign_multipart_upload
-
-        Abort a presign multipart upload  # noqa: E501
-        """
-        pass
-
-    def test_complete_presign_multipart_upload(self):
-        """Test case for complete_presign_multipart_upload
-
-        Complete a presign multipart upload request  # noqa: E501
-        """
-        pass
-
-    def test_create_presign_multipart_upload(self):
-        """Test case for create_presign_multipart_upload
-
-        Initiate a multipart upload  # noqa: E501
-        """
         pass
 
     def test_create_user_external_principal(self):
@@ -68,13 +47,6 @@ class TestExperimentalApi(unittest.TestCase):
         """Test case for get_user_external_principal
 
         get external principal of a user  # noqa: E501
-        """
-        pass
-
-    def test_hard_reset_branch(self):
-        """Test case for hard_reset_branch
-
-        hard reset branch  # noqa: E501
         """
         pass
 
