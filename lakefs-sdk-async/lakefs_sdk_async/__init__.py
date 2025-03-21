@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.4.0"
+__version__ = "1.5.0"
 
 # import apis into sdk package
 from lakefs_sdk_async.api.actions_api import ActionsApi
@@ -109,6 +109,7 @@ from lakefs_sdk_async.models.range_metadata import RangeMetadata
 from lakefs_sdk_async.models.ref import Ref
 from lakefs_sdk_async.models.ref_list import RefList
 from lakefs_sdk_async.models.refs_dump import RefsDump
+from lakefs_sdk_async.models.refs_restore import RefsRestore
 from lakefs_sdk_async.models.repository import Repository
 from lakefs_sdk_async.models.repository_creation import RepositoryCreation
 from lakefs_sdk_async.models.repository_dump_status import RepositoryDumpStatus

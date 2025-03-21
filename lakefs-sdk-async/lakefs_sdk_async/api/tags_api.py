@@ -21,7 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 from typing import overload, Optional, Union, Awaitable
 
-from pydantic import Field, StrictStr, conint
+from pydantic import Field, StrictBool, StrictStr, conint
 
 from typing import Optional
 
@@ -194,6 +194,7 @@ class TagsApi(object):
             '201': "Ref",
             '400': "Error",
             '401': "Error",
+            '403': "Error",
             '404': "Error",
             '409': "Error",
             '420': None,
@@ -217,27 +218,29 @@ class TagsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def delete_tag(self, repository : StrictStr, tag : StrictStr, **kwargs) -> None:  # noqa: E501
+    async def delete_tag(self, repository : StrictStr, tag : StrictStr, force : Optional[StrictBool] = None, **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def delete_tag(self, repository : StrictStr, tag : StrictStr, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def delete_tag(self, repository : StrictStr, tag : StrictStr, force : Optional[StrictBool] = None, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def delete_tag(self, repository : StrictStr, tag : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def delete_tag(self, repository : StrictStr, tag : StrictStr, force : Optional[StrictBool] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """delete tag  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_tag(repository, tag, async_req=True)
+        >>> thread = api.delete_tag(repository, tag, force, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
         :type repository: str
         :param tag: (required)
         :type tag: str
+        :param force:
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -254,22 +257,24 @@ class TagsApi(object):
             raise ValueError("Error! Please call the delete_tag_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.delete_tag_with_http_info(repository, tag, **kwargs)  # noqa: E501
+        return self.delete_tag_with_http_info(repository, tag, force, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_tag_with_http_info(self, repository : StrictStr, tag : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_tag_with_http_info(self, repository : StrictStr, tag : StrictStr, force : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """delete tag  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_tag_with_http_info(repository, tag, async_req=True)
+        >>> thread = api.delete_tag_with_http_info(repository, tag, force, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
         :type repository: str
         :param tag: (required)
         :type tag: str
+        :param force:
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -299,7 +304,8 @@ class TagsApi(object):
 
         _all_params = [
             'repository',
-            'tag'
+            'tag',
+            'force'
         ]
         _all_params.extend(
             [
@@ -336,6 +342,9 @@ class TagsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

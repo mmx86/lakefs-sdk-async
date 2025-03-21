@@ -38,6 +38,7 @@ from lakefs_sdk_async.models.object_stats import ObjectStats
 from lakefs_sdk_async.models.prepare_gc_uncommitted_request import PrepareGCUncommittedRequest
 from lakefs_sdk_async.models.prepare_gc_uncommitted_response import PrepareGCUncommittedResponse
 from lakefs_sdk_async.models.refs_dump import RefsDump
+from lakefs_sdk_async.models.refs_restore import RefsRestore
 from lakefs_sdk_async.models.setup import Setup
 from lakefs_sdk_async.models.setup_state import SetupState
 from lakefs_sdk_async.models.stats_events_list import StatsEventsList
@@ -2643,27 +2644,27 @@ class InternalApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def restore_refs(self, repository : StrictStr, refs_dump : RefsDump, **kwargs) -> None:  # noqa: E501
+    async def restore_refs(self, repository : StrictStr, refs_restore : RefsRestore, **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def restore_refs(self, repository : StrictStr, refs_dump : RefsDump, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def restore_refs(self, repository : StrictStr, refs_restore : RefsRestore, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def restore_refs(self, repository : StrictStr, refs_dump : RefsDump, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def restore_refs(self, repository : StrictStr, refs_restore : RefsRestore, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """Restore repository refs (tags, commits, branches) from object store. Deprecated: a new API will introduce long running operations   # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.restore_refs(repository, refs_dump, async_req=True)
+        >>> thread = api.restore_refs(repository, refs_restore, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
         :type repository: str
-        :param refs_dump: (required)
-        :type refs_dump: RefsDump
+        :param refs_restore: (required)
+        :type refs_restore: RefsRestore
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2680,22 +2681,22 @@ class InternalApi(object):
             raise ValueError("Error! Please call the restore_refs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.restore_refs_with_http_info(repository, refs_dump, **kwargs)  # noqa: E501
+        return self.restore_refs_with_http_info(repository, refs_restore, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def restore_refs_with_http_info(self, repository : StrictStr, refs_dump : RefsDump, **kwargs) -> ApiResponse:  # noqa: E501
+    def restore_refs_with_http_info(self, repository : StrictStr, refs_restore : RefsRestore, **kwargs) -> ApiResponse:  # noqa: E501
         """Restore repository refs (tags, commits, branches) from object store. Deprecated: a new API will introduce long running operations   # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.restore_refs_with_http_info(repository, refs_dump, async_req=True)
+        >>> thread = api.restore_refs_with_http_info(repository, refs_restore, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
         :type repository: str
-        :param refs_dump: (required)
-        :type refs_dump: RefsDump
+        :param refs_restore: (required)
+        :type refs_restore: RefsRestore
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2725,7 +2726,7 @@ class InternalApi(object):
 
         _all_params = [
             'repository',
-            'refs_dump'
+            'refs_restore'
         ]
         _all_params.extend(
             [
@@ -2766,8 +2767,8 @@ class InternalApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['refs_dump'] is not None:
-            _body_params = _params['refs_dump']
+        if _params['refs_restore'] is not None:
+            _body_params = _params['refs_restore']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
