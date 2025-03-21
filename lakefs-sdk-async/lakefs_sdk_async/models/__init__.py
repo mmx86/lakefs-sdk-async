@@ -101,6 +101,7 @@ from lakefs_sdk_async.models.stats_event import StatsEvent
 from lakefs_sdk_async.models.stats_events_list import StatsEventsList
 from lakefs_sdk_async.models.storage_config import StorageConfig
 from lakefs_sdk_async.models.storage_uri import StorageURI
+from lakefs_sdk_async.models.sts_auth_request import StsAuthRequest
 from lakefs_sdk_async.models.tag_creation import TagCreation
 from lakefs_sdk_async.models.task_info import TaskInfo
 from lakefs_sdk_async.models.underlying_object_properties import UnderlyingObjectProperties
