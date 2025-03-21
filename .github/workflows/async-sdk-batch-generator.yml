@@ -51,5 +51,5 @@ jobs:
       max-parallel: 1
     uses: mmx86/lakefs-sdk-async/.github/workflows/async-sdk-version-generator.yml@master
     with:
-      version: ${{ matrix.version }}
+      tag: ${{ matrix.version }}
       
