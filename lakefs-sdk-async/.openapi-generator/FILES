@@ -122,7 +122,6 @@ docs/User.md
 docs/UserCreation.md
 docs/UserList.md
 docs/VersionConfig.md
-lakefs_sdk/client.py
 lakefs_sdk_async/__init__.py
 lakefs_sdk_async/api/__init__.py
 lakefs_sdk_async/api/actions_api.py
@@ -144,6 +143,7 @@ lakefs_sdk_async/api/staging_api.py
 lakefs_sdk_async/api/tags_api.py
 lakefs_sdk_async/api_client.py
 lakefs_sdk_async/api_response.py
+lakefs_sdk_async/client.py
 lakefs_sdk_async/configuration.py
 lakefs_sdk_async/exceptions.py
 lakefs_sdk_async/models/__init__.py
