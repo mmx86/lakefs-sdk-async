@@ -12,7 +12,6 @@ Method | HTTP request | Description
 [**head_object**](ObjectsApi.md#head_object) | **HEAD** /repositories/{repository}/refs/{ref}/objects | check if object exists
 [**list_objects**](ObjectsApi.md#list_objects) | **GET** /repositories/{repository}/refs/{ref}/objects/ls | list objects under a given prefix
 [**stat_object**](ObjectsApi.md#stat_object) | **GET** /repositories/{repository}/refs/{ref}/objects/stat | get object metadata
-[**update_object_user_metadata**](ObjectsApi.md#update_object_user_metadata) | **PUT** /repositories/{repository}/branches/{branch}/objects/stat/user_metadata | rewrite (all) object metadata
 [**upload_object**](ObjectsApi.md#upload_object) | **POST** /repositories/{repository}/branches/{branch}/objects | 
 
 
@@ -99,7 +98,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -121,13 +119,11 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Copy object response |  -  |
 **400** | Validation Error |  -  |
 **401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **420** | too many requests |  -  |
 **0** | Internal Server Error |  -  |
@@ -135,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_object**
-> delete_object(repository, branch, path, force=force)
+> delete_object(repository, branch, path)
 
 delete object. Missing objects will not return a NotFound error.
 
@@ -200,11 +196,10 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
     repository = 'repository_example' # str | 
     branch = 'branch_example' # str | 
     path = 'path_example' # str | relative to the branch
-    force = False # bool |  (optional) (default to False)
 
     try:
         # delete object. Missing objects will not return a NotFound error.
-        await api_instance.delete_object(repository, branch, path, force=force)
+        await api_instance.delete_object(repository, branch, path)
     except Exception as e:
         print("Exception when calling ObjectsApi->delete_object: %s\n" % e)
 ```
@@ -213,13 +208,11 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
  **branch** | **str**|  | 
  **path** | **str**| relative to the branch | 
- **force** | **bool**|  | [optional] [default to False]
 
 ### Return type
 
@@ -235,7 +228,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | object deleted successfully |  -  |
@@ -248,7 +240,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_objects**
-> ObjectErrorList delete_objects(repository, branch, path_list, force=force)
+> ObjectErrorList delete_objects(repository, branch, path_list)
 
 delete objects. Missing objects will not return a NotFound error.
 
@@ -315,11 +307,10 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
     repository = 'repository_example' # str | 
     branch = 'branch_example' # str | 
     path_list = lakefs_sdk_async.PathList() # PathList | 
-    force = False # bool |  (optional) (default to False)
 
     try:
         # delete objects. Missing objects will not return a NotFound error.
-        api_response = await api_instance.delete_objects(repository, branch, path_list, force=force)
+        api_response = await api_instance.delete_objects(repository, branch, path_list)
         print("The response of ObjectsApi->delete_objects:\n")
         pprint(api_response)
     except Exception as e:
@@ -330,13 +321,11 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
  **branch** | **str**|  | 
  **path_list** | [**PathList**](PathList.md)|  | 
- **force** | **bool**|  | [optional] [default to False]
 
 ### Return type
 
@@ -352,7 +341,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Delete objects response |  -  |
@@ -365,7 +353,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_object**
-> bytearray get_object(repository, ref, path, range=range, if_none_match=if_none_match, presign=presign)
+> bytearray get_object(repository, ref, path, range=range, presign=presign)
 
 get object content
 
@@ -431,12 +419,11 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
     ref = 'ref_example' # str | a reference (could be either a branch or a commit ID)
     path = 'path_example' # str | relative to the ref
     range = 'bytes=0-1023' # str | Byte range to retrieve (optional)
-    if_none_match = '33a64df551425fcc55e4d42a148795d9f25f89d4' # str | Returns response only if the object does not have a matching ETag (optional)
     presign = True # bool |  (optional)
 
     try:
         # get object content
-        api_response = await api_instance.get_object(repository, ref, path, range=range, if_none_match=if_none_match, presign=presign)
+        api_response = await api_instance.get_object(repository, ref, path, range=range, presign=presign)
         print("The response of ObjectsApi->get_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -447,14 +434,12 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
  **ref** | **str**| a reference (could be either a branch or a commit ID) | 
  **path** | **str**| relative to the ref | 
  **range** | **str**| Byte range to retrieve | [optional] 
- **if_none_match** | **str**| Returns response only if the object does not have a matching ETag | [optional] 
  **presign** | **bool**|  | [optional] 
 
 ### Return type
@@ -471,13 +456,11 @@ Name | Type | Description  | Notes
  - **Accept**: application/octet-stream, application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | object content |  * Content-Length -  <br>  * Last-Modified -  <br>  * ETag -  <br>  |
 **206** | partial object content |  * Content-Length -  <br>  * Content-Range -  <br>  * Last-Modified -  <br>  * ETag -  <br>  |
 **302** | Redirect to a pre-signed URL for the object |  * Location - redirect to S3 <br>  |
-**304** | Content not modified |  -  |
 **401** | Unauthorized |  -  |
 **404** | Resource Not Found |  -  |
 **410** | object expired |  -  |
@@ -568,7 +551,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -589,7 +571,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | object metadata on underlying storage |  -  |
@@ -679,7 +660,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -701,7 +681,6 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | object exists |  * Content-Length -  <br>  * Last-Modified -  <br>  * ETag -  <br>  |
@@ -801,7 +780,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -827,7 +805,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | object listing |  -  |
@@ -921,7 +898,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -944,7 +920,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | object metadata |  -  |
@@ -957,122 +932,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_object_user_metadata**
-> update_object_user_metadata(repository, branch, path, update_object_user_metadata)
-
-rewrite (all) object metadata
-
-### Example
-
-* Basic Authentication (basic_auth):
-* Api Key Authentication (cookie_auth):
-* Api Key Authentication (oidc_auth):
-* Api Key Authentication (saml_auth):
-* Bearer (JWT) Authentication (jwt_token):
-```python
-import time
-import os
-import lakefs_sdk_async
-from lakefs_sdk_async.models.update_object_user_metadata import UpdateObjectUserMetadata
-from lakefs_sdk_async.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = lakefs_sdk_async.Configuration(
-    host = "/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: basic_auth
-configuration = lakefs_sdk_async.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: cookie_auth
-configuration.api_key['cookie_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookie_auth'] = 'Bearer'
-
-# Configure API key authorization: oidc_auth
-configuration.api_key['oidc_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['oidc_auth'] = 'Bearer'
-
-# Configure API key authorization: saml_auth
-configuration.api_key['saml_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['saml_auth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): jwt_token
-configuration = lakefs_sdk_async.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-async with lakefs_sdk_async.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = lakefs_sdk_async.ObjectsApi(api_client)
-    repository = 'repository_example' # str | 
-    branch = 'branch_example' # str | branch to update
-    path = 'path_example' # str | path to object relative to the branch
-    update_object_user_metadata = lakefs_sdk_async.UpdateObjectUserMetadata() # UpdateObjectUserMetadata | 
-
-    try:
-        # rewrite (all) object metadata
-        await api_instance.update_object_user_metadata(repository, branch, path, update_object_user_metadata)
-    except Exception as e:
-        print("Exception when calling ObjectsApi->update_object_user_metadata: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **repository** | **str**|  | 
- **branch** | **str**| branch to update | 
- **path** | **str**| path to object relative to the branch | 
- **update_object_user_metadata** | [**UpdateObjectUserMetadata**](UpdateObjectUserMetadata.md)|  | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[basic_auth](../README.md#basic_auth), [cookie_auth](../README.md#cookie_auth), [oidc_auth](../README.md#oidc_auth), [saml_auth](../README.md#saml_auth), [jwt_token](../README.md#jwt_token)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | User metadata updated |  -  |
-**401** | Unauthorized |  -  |
-**404** | Resource Not Found |  -  |
-**400** | Bad Request |  -  |
-**420** | too many requests |  -  |
-**0** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **upload_object**
-> ObjectStats upload_object(repository, branch, path, if_none_match=if_none_match, storage_class=storage_class, force=force, content=content)
+> ObjectStats upload_object(repository, branch, path, storage_class=storage_class, if_none_match=if_none_match, content=content)
 
 
 
@@ -1138,13 +999,12 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
     repository = 'repository_example' # str | 
     branch = 'branch_example' # str | 
     path = 'path_example' # str | relative to the branch
-    if_none_match = '*' # str | Set to \"*\" to atomically allow the upload only if the key has no object yet. Other values are not supported. (optional)
     storage_class = 'storage_class_example' # str | Deprecated, this capability will not be supported in future releases. (optional)
-    force = False # bool |  (optional) (default to False)
+    if_none_match = '*' # str | Currently supports only \"*\" to allow uploading an object only if one doesn't exist yet. Deprecated, this capability will not be supported in future releases.  (optional)
     content = None # bytearray | Only a single file per upload which must be named \\\"content\\\". (optional)
 
     try:
-        api_response = await api_instance.upload_object(repository, branch, path, if_none_match=if_none_match, storage_class=storage_class, force=force, content=content)
+        api_response = await api_instance.upload_object(repository, branch, path, storage_class=storage_class, if_none_match=if_none_match, content=content)
         print("The response of ObjectsApi->upload_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -1155,15 +1015,13 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
  **branch** | **str**|  | 
  **path** | **str**| relative to the branch | 
- **if_none_match** | **str**| Set to \&quot;*\&quot; to atomically allow the upload only if the key has no object yet. Other values are not supported. | [optional] 
  **storage_class** | **str**| Deprecated, this capability will not be supported in future releases. | [optional] 
- **force** | **bool**|  | [optional] [default to False]
+ **if_none_match** | **str**| Currently supports only \&quot;*\&quot; to allow uploading an object only if one doesn&#39;t exist yet. Deprecated, this capability will not be supported in future releases.  | [optional] 
  **content** | **bytearray**| Only a single file per upload which must be named \\\&quot;content\\\&quot;. | [optional] 
 
 ### Return type
@@ -1180,7 +1038,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | object metadata |  -  |

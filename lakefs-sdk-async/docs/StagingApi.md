@@ -90,7 +90,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -112,7 +111,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | physical address for staging area |  -  |
@@ -124,7 +122,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **link_physical_address**
-> ObjectStats link_physical_address(repository, branch, path, staging_metadata, if_none_match=if_none_match)
+> ObjectStats link_physical_address(repository, branch, path, staging_metadata)
 
 associate staging on this physical address with a path
 
@@ -194,11 +192,10 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
     branch = 'branch_example' # str | 
     path = 'path_example' # str | relative to the branch
     staging_metadata = lakefs_sdk_async.StagingMetadata() # StagingMetadata | 
-    if_none_match = '*' # str | Set to \"*\" to atomically allow the upload only if the key has no object yet. Other values are not supported. (optional)
 
     try:
         # associate staging on this physical address with a path
-        api_response = await api_instance.link_physical_address(repository, branch, path, staging_metadata, if_none_match=if_none_match)
+        api_response = await api_instance.link_physical_address(repository, branch, path, staging_metadata)
         print("The response of StagingApi->link_physical_address:\n")
         pprint(api_response)
     except Exception as e:
@@ -209,14 +206,12 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
  **branch** | **str**|  | 
  **path** | **str**| relative to the branch | 
  **staging_metadata** | [**StagingMetadata**](StagingMetadata.md)|  | 
- **if_none_match** | **str**| Set to \&quot;*\&quot; to atomically allow the upload only if the key has no object yet. Other values are not supported. | [optional] 
 
 ### Return type
 
@@ -232,16 +227,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | object metadata |  -  |
 **400** | Validation Error |  -  |
 **401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
 **404** | Internal Server Error |  -  |
 **409** | conflict with a commit, try here |  -  |
-**412** | Precondition Failed |  -  |
 **420** | too many requests |  -  |
 **0** | Internal Server Error |  -  |
 

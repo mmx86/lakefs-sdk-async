@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 from typing import Any, Dict, Optional
-try:
-    from pydantic.v1 import Field, StrictInt, StrictStr
-except ImportError:
-    from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field, StrictInt, StrictStr
 
 class ApiResponse:
     """
@@ -21,7 +18,7 @@ class ApiResponse:
                  status_code=None,
                  headers=None,
                  data=None,
-                 raw_data=None) -> None:
+                 raw_data=None):
         self.status_code = status_code
         self.headers = headers
         self.data = data

@@ -91,7 +91,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -111,13 +110,11 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | tag |  -  |
 **400** | Validation Error |  -  |
 **401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **409** | Resource Conflicts With Target |  -  |
 **420** | too many requests |  -  |
@@ -126,7 +123,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_tag**
-> delete_tag(repository, tag, force=force)
+> delete_tag(repository, tag)
 
 delete tag
 
@@ -190,11 +187,10 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
     api_instance = lakefs_sdk_async.TagsApi(api_client)
     repository = 'repository_example' # str | 
     tag = 'tag_example' # str | 
-    force = True # bool |  (optional)
 
     try:
         # delete tag
-        await api_instance.delete_tag(repository, tag, force=force)
+        await api_instance.delete_tag(repository, tag)
     except Exception as e:
         print("Exception when calling TagsApi->delete_tag: %s\n" % e)
 ```
@@ -203,12 +199,10 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
  **tag** | **str**|  | 
- **force** | **bool**|  | [optional] 
 
 ### Return type
 
@@ -224,12 +218,10 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | tag deleted successfully |  -  |
 **401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **420** | too many requests |  -  |
 **0** | Internal Server Error |  -  |
@@ -316,7 +308,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -336,7 +327,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | tag |  -  |
@@ -429,7 +419,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -451,7 +440,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | tag list |  -  |

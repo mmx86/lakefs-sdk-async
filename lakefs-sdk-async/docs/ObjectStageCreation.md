@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **physical_address** | **str** |  | 
@@ -11,7 +10,6 @@ Name | Type | Description | Notes
 **mtime** | **int** | Unix Epoch in seconds | [optional] 
 **metadata** | **Dict[str, str]** |  | [optional] 
 **content_type** | **str** | Object media type | [optional] 
-**force** | **bool** |  | [optional] [default to False]
 
 ## Example
 

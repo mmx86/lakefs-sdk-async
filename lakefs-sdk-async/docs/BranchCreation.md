@@ -2,13 +2,10 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
 **source** | **str** |  | 
-**force** | **bool** |  | [optional] [default to False]
-**hidden** | **bool** | When set, branch will not show up when listing branches by default. *EXPERIMENTAL* | [optional] [default to False]
 
 ## Example
 

@@ -91,7 +91,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -113,7 +112,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | commit |  -  |
@@ -121,7 +119,6 @@ Name | Type | Description  | Notes
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
-**409** | Resource Conflicts With Target |  -  |
 **412** | Precondition Failed (e.g. a pre-commit hook returned a failure) |  -  |
 **420** | too many requests |  -  |
 **0** | Internal Server Error |  -  |
@@ -208,7 +205,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repository** | **str**|  | 
@@ -228,7 +224,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | commit |  -  |

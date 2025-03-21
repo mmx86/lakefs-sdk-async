@@ -2,12 +2,9 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
 **creation_date** | **int** | Unix Epoch in seconds | 
 
 ## Example

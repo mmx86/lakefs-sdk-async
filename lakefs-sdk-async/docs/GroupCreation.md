@@ -2,11 +2,9 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**description** | **str** |  | [optional] 
 
 ## Example
 

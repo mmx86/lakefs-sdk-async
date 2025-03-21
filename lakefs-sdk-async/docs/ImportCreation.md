@@ -2,12 +2,10 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **paths** | [**List[ImportLocation]**](ImportLocation.md) |  | 
 **commit** | [**CommitCreation**](CommitCreation.md) |  | 
-**force** | **bool** |  | [optional] [default to False]
 
 ## Example
 

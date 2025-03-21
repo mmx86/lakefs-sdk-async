@@ -11,19 +11,15 @@ Method | HTTP request | Description
 [**create_group**](AuthApi.md#create_group) | **POST** /auth/groups | create group
 [**create_policy**](AuthApi.md#create_policy) | **POST** /auth/policies | create policy
 [**create_user**](AuthApi.md#create_user) | **POST** /auth/users | create user
-[**create_user_external_principal**](AuthApi.md#create_user_external_principal) | **POST** /auth/users/{userId}/external/principals | attach external principal to user
 [**delete_credentials**](AuthApi.md#delete_credentials) | **DELETE** /auth/users/{userId}/credentials/{accessKeyId} | delete credentials
 [**delete_group**](AuthApi.md#delete_group) | **DELETE** /auth/groups/{groupId} | delete group
 [**delete_group_membership**](AuthApi.md#delete_group_membership) | **DELETE** /auth/groups/{groupId}/members/{userId} | delete group membership
 [**delete_policy**](AuthApi.md#delete_policy) | **DELETE** /auth/policies/{policyId} | delete policy
 [**delete_user**](AuthApi.md#delete_user) | **DELETE** /auth/users/{userId} | delete user
-[**delete_user_external_principal**](AuthApi.md#delete_user_external_principal) | **DELETE** /auth/users/{userId}/external/principals | delete external principal from user
 [**detach_policy_from_group**](AuthApi.md#detach_policy_from_group) | **DELETE** /auth/groups/{groupId}/policies/{policyId} | detach policy from group
 [**detach_policy_from_user**](AuthApi.md#detach_policy_from_user) | **DELETE** /auth/users/{userId}/policies/{policyId} | detach policy from user
-[**external_principal_login**](AuthApi.md#external_principal_login) | **POST** /auth/external/principal/login | perform a login using an external authenticator
 [**get_credentials**](AuthApi.md#get_credentials) | **GET** /auth/users/{userId}/credentials/{accessKeyId} | get credentials
 [**get_current_user**](AuthApi.md#get_current_user) | **GET** /user | get current user
-[**get_external_principal**](AuthApi.md#get_external_principal) | **GET** /auth/external/principals | describe external principal by id
 [**get_group**](AuthApi.md#get_group) | **GET** /auth/groups/{groupId} | get group
 [**get_group_acl**](AuthApi.md#get_group_acl) | **GET** /auth/groups/{groupId}/acl | get ACL of group
 [**get_policy**](AuthApi.md#get_policy) | **GET** /auth/policies/{policyId} | get policy
@@ -33,7 +29,6 @@ Method | HTTP request | Description
 [**list_groups**](AuthApi.md#list_groups) | **GET** /auth/groups | list groups
 [**list_policies**](AuthApi.md#list_policies) | **GET** /auth/policies | list policies
 [**list_user_credentials**](AuthApi.md#list_user_credentials) | **GET** /auth/users/{userId}/credentials | list user credentials
-[**list_user_external_principals**](AuthApi.md#list_user_external_principals) | **GET** /auth/users/{userId}/external/principals/ls | list user external policies attached to a user
 [**list_user_groups**](AuthApi.md#list_user_groups) | **GET** /auth/users/{userId}/groups | list user groups
 [**list_user_policies**](AuthApi.md#list_user_policies) | **GET** /auth/users/{userId}/policies | list user policies
 [**list_users**](AuthApi.md#list_users) | **GET** /auth/users | list users
@@ -119,7 +114,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -139,7 +133,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | membership added successfully |  -  |
@@ -227,7 +220,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -247,7 +239,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | policy attached successfully |  -  |
@@ -335,7 +326,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -355,7 +345,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | policy attached successfully |  -  |
@@ -445,7 +434,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -464,7 +452,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | credentials |  -  |
@@ -555,7 +542,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_creation** | [**GroupCreation**](GroupCreation.md)|  | [optional] 
@@ -574,7 +560,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | group |  -  |
@@ -664,7 +649,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **policy** | [**Policy**](Policy.md)|  | 
@@ -683,7 +667,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | policy |  -  |
@@ -775,7 +758,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_creation** | [**UserCreation**](UserCreation.md)|  | [optional] 
@@ -794,124 +776,11 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | user |  -  |
 **400** | validation error |  -  |
 **401** | Unauthorized |  -  |
-**409** | Resource Conflicts With Target |  -  |
-**420** | too many requests |  -  |
-**0** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_user_external_principal**
-> create_user_external_principal(user_id, principal_id, external_principal_creation=external_principal_creation)
-
-attach external principal to user
-
-### Example
-
-* Basic Authentication (basic_auth):
-* Api Key Authentication (cookie_auth):
-* Api Key Authentication (oidc_auth):
-* Api Key Authentication (saml_auth):
-* Bearer (JWT) Authentication (jwt_token):
-```python
-import time
-import os
-import lakefs_sdk_async
-from lakefs_sdk_async.models.external_principal_creation import ExternalPrincipalCreation
-from lakefs_sdk_async.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = lakefs_sdk_async.Configuration(
-    host = "/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: basic_auth
-configuration = lakefs_sdk_async.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: cookie_auth
-configuration.api_key['cookie_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookie_auth'] = 'Bearer'
-
-# Configure API key authorization: oidc_auth
-configuration.api_key['oidc_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['oidc_auth'] = 'Bearer'
-
-# Configure API key authorization: saml_auth
-configuration.api_key['saml_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['saml_auth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): jwt_token
-configuration = lakefs_sdk_async.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-async with lakefs_sdk_async.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = lakefs_sdk_async.AuthApi(api_client)
-    user_id = 'user_id_example' # str | 
-    principal_id = 'principal_id_example' # str | 
-    external_principal_creation = lakefs_sdk_async.ExternalPrincipalCreation() # ExternalPrincipalCreation |  (optional)
-
-    try:
-        # attach external principal to user
-        await api_instance.create_user_external_principal(user_id, principal_id, external_principal_creation=external_principal_creation)
-    except Exception as e:
-        print("Exception when calling AuthApi->create_user_external_principal: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
- **principal_id** | **str**|  | 
- **external_principal_creation** | [**ExternalPrincipalCreation**](ExternalPrincipalCreation.md)|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[basic_auth](../README.md#basic_auth), [cookie_auth](../README.md#cookie_auth), [oidc_auth](../README.md#oidc_auth), [saml_auth](../README.md#saml_auth), [jwt_token](../README.md#jwt_token)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | external principal attached successfully |  -  |
-**401** | Unauthorized |  -  |
-**404** | Resource Not Found |  -  |
 **409** | Resource Conflicts With Target |  -  |
 **420** | too many requests |  -  |
 **0** | Internal Server Error |  -  |
@@ -995,7 +864,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -1015,7 +883,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | credentials deleted successfully |  -  |
@@ -1102,7 +969,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -1121,7 +987,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | group deleted successfully |  -  |
@@ -1209,7 +1074,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -1229,7 +1093,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | membership deleted successfully |  -  |
@@ -1316,7 +1179,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **policy_id** | **str**|  | 
@@ -1335,7 +1197,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | policy deleted successfully |  -  |
@@ -1422,7 +1283,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -1441,118 +1301,9 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | user deleted successfully |  -  |
-**401** | Unauthorized |  -  |
-**404** | Resource Not Found |  -  |
-**420** | too many requests |  -  |
-**0** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_user_external_principal**
-> delete_user_external_principal(user_id, principal_id)
-
-delete external principal from user
-
-### Example
-
-* Basic Authentication (basic_auth):
-* Api Key Authentication (cookie_auth):
-* Api Key Authentication (oidc_auth):
-* Api Key Authentication (saml_auth):
-* Bearer (JWT) Authentication (jwt_token):
-```python
-import time
-import os
-import lakefs_sdk_async
-from lakefs_sdk_async.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = lakefs_sdk_async.Configuration(
-    host = "/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: basic_auth
-configuration = lakefs_sdk_async.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: cookie_auth
-configuration.api_key['cookie_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookie_auth'] = 'Bearer'
-
-# Configure API key authorization: oidc_auth
-configuration.api_key['oidc_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['oidc_auth'] = 'Bearer'
-
-# Configure API key authorization: saml_auth
-configuration.api_key['saml_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['saml_auth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): jwt_token
-configuration = lakefs_sdk_async.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-async with lakefs_sdk_async.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = lakefs_sdk_async.AuthApi(api_client)
-    user_id = 'user_id_example' # str | 
-    principal_id = 'principal_id_example' # str | 
-
-    try:
-        # delete external principal from user
-        await api_instance.delete_user_external_principal(user_id, principal_id)
-    except Exception as e:
-        print("Exception when calling AuthApi->delete_user_external_principal: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
- **principal_id** | **str**|  | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[basic_auth](../README.md#basic_auth), [cookie_auth](../README.md#cookie_auth), [oidc_auth](../README.md#oidc_auth), [saml_auth](../README.md#saml_auth), [jwt_token](../README.md#jwt_token)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | external principal detached successfully |  -  |
 **401** | Unauthorized |  -  |
 **404** | Resource Not Found |  -  |
 **420** | too many requests |  -  |
@@ -1637,7 +1388,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -1657,7 +1407,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | policy detached successfully |  -  |
@@ -1745,7 +1494,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -1765,85 +1513,10 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | policy detached successfully |  -  |
 **401** | Unauthorized |  -  |
-**404** | Resource Not Found |  -  |
-**420** | too many requests |  -  |
-**0** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **external_principal_login**
-> AuthenticationToken external_principal_login(external_login_information=external_login_information)
-
-perform a login using an external authenticator
-
-### Example
-
-```python
-import time
-import os
-import lakefs_sdk_async
-from lakefs_sdk_async.models.authentication_token import AuthenticationToken
-from lakefs_sdk_async.models.external_login_information import ExternalLoginInformation
-from lakefs_sdk_async.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = lakefs_sdk_async.Configuration(
-    host = "/api/v1"
-)
-
-
-# Enter a context with an instance of the API client
-async with lakefs_sdk_async.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = lakefs_sdk_async.AuthApi(api_client)
-    external_login_information = lakefs_sdk_async.ExternalLoginInformation() # ExternalLoginInformation |  (optional)
-
-    try:
-        # perform a login using an external authenticator
-        api_response = await api_instance.external_principal_login(external_login_information=external_login_information)
-        print("The response of AuthApi->external_principal_login:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthApi->external_principal_login: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **external_login_information** | [**ExternalLoginInformation**](ExternalLoginInformation.md)|  | [optional] 
-
-### Return type
-
-[**AuthenticationToken**](AuthenticationToken.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | successful external login |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
 **404** | Resource Not Found |  -  |
 **420** | too many requests |  -  |
 **0** | Internal Server Error |  -  |
@@ -1930,7 +1603,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -1950,7 +1622,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | credentials |  -  |
@@ -2038,7 +1709,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2055,119 +1725,9 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | user |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_external_principal**
-> ExternalPrincipal get_external_principal(principal_id)
-
-describe external principal by id
-
-### Example
-
-* Basic Authentication (basic_auth):
-* Api Key Authentication (cookie_auth):
-* Api Key Authentication (oidc_auth):
-* Api Key Authentication (saml_auth):
-* Bearer (JWT) Authentication (jwt_token):
-```python
-import time
-import os
-import lakefs_sdk_async
-from lakefs_sdk_async.models.external_principal import ExternalPrincipal
-from lakefs_sdk_async.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = lakefs_sdk_async.Configuration(
-    host = "/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: basic_auth
-configuration = lakefs_sdk_async.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: cookie_auth
-configuration.api_key['cookie_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookie_auth'] = 'Bearer'
-
-# Configure API key authorization: oidc_auth
-configuration.api_key['oidc_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['oidc_auth'] = 'Bearer'
-
-# Configure API key authorization: saml_auth
-configuration.api_key['saml_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['saml_auth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): jwt_token
-configuration = lakefs_sdk_async.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-async with lakefs_sdk_async.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = lakefs_sdk_async.AuthApi(api_client)
-    principal_id = 'principal_id_example' # str | 
-
-    try:
-        # describe external principal by id
-        api_response = await api_instance.get_external_principal(principal_id)
-        print("The response of AuthApi->get_external_principal:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthApi->get_external_principal: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **principal_id** | **str**|  | 
-
-### Return type
-
-[**ExternalPrincipal**](ExternalPrincipal.md)
-
-### Authorization
-
-[basic_auth](../README.md#basic_auth), [cookie_auth](../README.md#cookie_auth), [oidc_auth](../README.md#oidc_auth), [saml_auth](../README.md#saml_auth), [jwt_token](../README.md#jwt_token)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | external principal |  -  |
-**401** | Unauthorized |  -  |
-**404** | Resource Not Found |  -  |
-**420** | too many requests |  -  |
-**0** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2250,7 +1810,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -2269,7 +1828,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | group |  -  |
@@ -2359,7 +1917,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -2378,7 +1935,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ACL of group |  -  |
@@ -2468,7 +2024,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **policy_id** | **str**|  | 
@@ -2487,7 +2042,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | policy |  -  |
@@ -2577,7 +2131,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -2596,7 +2149,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | user |  -  |
@@ -2689,7 +2241,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -2711,7 +2262,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | group member list |  -  |
@@ -2803,7 +2353,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -2825,7 +2374,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | policy list |  -  |
@@ -2917,7 +2465,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **prefix** | **str**| return items prefixed with this value | [optional] 
@@ -2938,7 +2485,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | group list |  -  |
@@ -3029,7 +2575,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **prefix** | **str**| return items prefixed with this value | [optional] 
@@ -3050,7 +2595,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | policy list |  -  |
@@ -3142,7 +2686,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -3164,125 +2707,9 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | credential list |  -  |
-**401** | Unauthorized |  -  |
-**404** | Resource Not Found |  -  |
-**420** | too many requests |  -  |
-**0** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_user_external_principals**
-> ExternalPrincipalList list_user_external_principals(user_id, prefix=prefix, after=after, amount=amount)
-
-list user external policies attached to a user
-
-### Example
-
-* Basic Authentication (basic_auth):
-* Api Key Authentication (cookie_auth):
-* Api Key Authentication (oidc_auth):
-* Api Key Authentication (saml_auth):
-* Bearer (JWT) Authentication (jwt_token):
-```python
-import time
-import os
-import lakefs_sdk_async
-from lakefs_sdk_async.models.external_principal_list import ExternalPrincipalList
-from lakefs_sdk_async.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = lakefs_sdk_async.Configuration(
-    host = "/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: basic_auth
-configuration = lakefs_sdk_async.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: cookie_auth
-configuration.api_key['cookie_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookie_auth'] = 'Bearer'
-
-# Configure API key authorization: oidc_auth
-configuration.api_key['oidc_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['oidc_auth'] = 'Bearer'
-
-# Configure API key authorization: saml_auth
-configuration.api_key['saml_auth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['saml_auth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): jwt_token
-configuration = lakefs_sdk_async.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-async with lakefs_sdk_async.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = lakefs_sdk_async.AuthApi(api_client)
-    user_id = 'user_id_example' # str | 
-    prefix = 'prefix_example' # str | return items prefixed with this value (optional)
-    after = 'after_example' # str | return items after this value (optional)
-    amount = 100 # int | how many items to return (optional) (default to 100)
-
-    try:
-        # list user external policies attached to a user
-        api_response = await api_instance.list_user_external_principals(user_id, prefix=prefix, after=after, amount=amount)
-        print("The response of AuthApi->list_user_external_principals:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthApi->list_user_external_principals: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
- **prefix** | **str**| return items prefixed with this value | [optional] 
- **after** | **str**| return items after this value | [optional] 
- **amount** | **int**| how many items to return | [optional] [default to 100]
-
-### Return type
-
-[**ExternalPrincipalList**](ExternalPrincipalList.md)
-
-### Authorization
-
-[basic_auth](../README.md#basic_auth), [cookie_auth](../README.md#cookie_auth), [oidc_auth](../README.md#oidc_auth), [saml_auth](../README.md#saml_auth), [jwt_token](../README.md#jwt_token)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | external principals list |  -  |
 **401** | Unauthorized |  -  |
 **404** | Resource Not Found |  -  |
 **420** | too many requests |  -  |
@@ -3372,7 +2799,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -3394,7 +2820,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | group list |  -  |
@@ -3488,7 +2913,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  | 
@@ -3511,7 +2935,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | policy list |  -  |
@@ -3603,7 +3026,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **prefix** | **str**| return items prefixed with this value | [optional] 
@@ -3624,7 +3046,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | user list |  -  |
@@ -3676,7 +3097,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **login_information** | [**LoginInformation**](LoginInformation.md)|  | [optional] 
@@ -3695,7 +3115,6 @@ No authorization required
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successful login |  * Set-Cookie -  <br>  |
@@ -3783,7 +3202,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_id** | **str**|  | 
@@ -3803,7 +3221,6 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | ACL successfully changed |  -  |
@@ -3894,7 +3311,6 @@ async with lakefs_sdk_async.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **policy_id** | **str**|  | 
@@ -3914,7 +3330,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | policy |  -  |

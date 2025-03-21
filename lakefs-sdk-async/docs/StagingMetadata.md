@@ -3,7 +3,6 @@
 information about uploaded object
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **staging** | [**StagingLocation**](StagingLocation.md) |  | 
@@ -11,8 +10,6 @@ Name | Type | Description | Notes
 **size_bytes** | **int** |  | 
 **user_metadata** | **Dict[str, str]** |  | [optional] 
 **content_type** | **str** | Object media type | [optional] 
-**mtime** | **int** | Unix Epoch in seconds.  May be ignored by server. | [optional] 
-**force** | **bool** |  | [optional] [default to False]
 
 ## Example
 

@@ -2,12 +2,10 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | What to reset according to path. | 
+**type** | **str** |  | 
 **path** | **str** |  | [optional] 
-**force** | **bool** |  | [optional] [default to False]
 
 ## Example
 

@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **blockstore_type** | **str** |  | 
@@ -13,9 +12,6 @@ Name | Type | Description | Notes
 **pre_sign_support_ui** | **bool** |  | 
 **import_support** | **bool** |  | 
 **import_validity_regex** | **str** |  | 
-**pre_sign_multipart_upload** | **bool** |  | [optional] 
-**blockstore_id** | **str** |  | [optional] 
-**blockstore_description** | **str** |  | [optional] 
 
 ## Example
 
