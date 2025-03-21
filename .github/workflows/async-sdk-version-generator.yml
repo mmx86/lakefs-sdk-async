@@ -45,6 +45,7 @@ jobs:
         run: |
           echo -e "\nlibrary: asyncio\n" >> $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
           cat $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
+          sed -i "s/folder: lakefs_sdk/folder: lakefs_sdk_async/g" $GITHUB_WORKSPACE/lakefs/clients/python/python-codegen-config.yaml
       - name: Patch makefile (package name and output dir)
         run: |
           sed -i "s/--package-name lakefs_sdk/--package-name lakefs_sdk_async/g" $GITHUB_WORKSPACE/lakefs/Makefile
