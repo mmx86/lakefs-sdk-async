@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "lakefs-sdk"
-VERSION = "1.28.2"
+VERSION = "1.29.0"
 # To install the library, run the following
 #
 # python setup.py install
