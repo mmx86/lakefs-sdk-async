@@ -26,7 +26,7 @@ jobs:
         run: |
           echo "VERSION=${TAG:1}" >> $GITHUB_ENV
           echo "TAG: $TAG"
-          echo "VERSION: $VERSION"
+          echo "VERSION: ${{ env.VERSION }}"
       - name: Checkout lakefs-sdk-async
         uses: actions/checkout@v4
         with:
