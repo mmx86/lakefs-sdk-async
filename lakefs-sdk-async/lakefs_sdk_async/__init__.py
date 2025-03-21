@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.43.0"
+__version__ = "1.44.0"
 
 # import apis into sdk package
 from lakefs_sdk_async.api.actions_api import ActionsApi

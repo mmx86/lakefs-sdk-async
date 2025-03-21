@@ -914,21 +914,21 @@ class BranchesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def list_branches(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, **kwargs) -> RefList:  # noqa: E501
+    async def list_branches(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, show_hidden : Optional[StrictBool] = None, **kwargs) -> RefList:  # noqa: E501
         ...
 
     @overload
-    def list_branches(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, async_req: Optional[bool]=True, **kwargs) -> RefList:  # noqa: E501
+    def list_branches(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, show_hidden : Optional[StrictBool] = None, async_req: Optional[bool]=True, **kwargs) -> RefList:  # noqa: E501
         ...
 
     @validate_arguments
-    def list_branches(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[RefList, Awaitable[RefList]]:  # noqa: E501
+    def list_branches(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, show_hidden : Optional[StrictBool] = None, async_req: Optional[bool]=None, **kwargs) -> Union[RefList, Awaitable[RefList]]:  # noqa: E501
         """list branches  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_branches(repository, prefix, after, amount, async_req=True)
+        >>> thread = api.list_branches(repository, prefix, after, amount, show_hidden, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -939,6 +939,8 @@ class BranchesApi(object):
         :type after: str
         :param amount: how many items to return
         :type amount: int
+        :param show_hidden:
+        :type show_hidden: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -955,16 +957,16 @@ class BranchesApi(object):
             raise ValueError("Error! Please call the list_branches_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.list_branches_with_http_info(repository, prefix, after, amount, **kwargs)  # noqa: E501
+        return self.list_branches_with_http_info(repository, prefix, after, amount, show_hidden, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_branches_with_http_info(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def list_branches_with_http_info(self, repository : StrictStr, prefix : Annotated[Optional[StrictStr], Field(description="return items prefixed with this value")] = None, after : Annotated[Optional[StrictStr], Field(description="return items after this value")] = None, amount : Annotated[Optional[conint(strict=True, le=1000, ge=-1)], Field(description="how many items to return")] = None, show_hidden : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """list branches  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_branches_with_http_info(repository, prefix, after, amount, async_req=True)
+        >>> thread = api.list_branches_with_http_info(repository, prefix, after, amount, show_hidden, async_req=True)
         >>> result = thread.get()
 
         :param repository: (required)
@@ -975,6 +977,8 @@ class BranchesApi(object):
         :type after: str
         :param amount: how many items to return
         :type amount: int
+        :param show_hidden:
+        :type show_hidden: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1006,7 +1010,8 @@ class BranchesApi(object):
             'repository',
             'prefix',
             'after',
-            'amount'
+            'amount',
+            'show_hidden'
         ]
         _all_params.extend(
             [
@@ -1048,6 +1053,9 @@ class BranchesApi(object):
 
         if _params.get('amount') is not None:  # noqa: E501
             _query_params.append(('amount', _params['amount']))
+
+        if _params.get('show_hidden') is not None:  # noqa: E501
+            _query_params.append(('show_hidden', _params['show_hidden']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
