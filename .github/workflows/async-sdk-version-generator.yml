@@ -3,28 +3,30 @@ name: Generate one version
 on:
   workflow_call:
     inputs:
-      version:
+      tag:
         default: 'v1.0.0'
-        description: 'Version (lakefs must have corresponding tag)'
+        description: 'Tag in lakefs repo'
         required: true
         type: string
   workflow_dispatch:
     inputs:
-      version:
+      tag:
         default: 'v1.0.0'
-        description: 'Version (lakefs must have corresponding tag)'
+        description: 'Tag in lakefs repo'
         required: true
         type: string
 
 jobs:
   generate-async-lakefs-sdk:
     env:
-      VERSION: ${{ inputs.version }}
+      TAG: ${{ inputs.tag }}
     runs-on: ubuntu-latest
     steps:
-      - name: Print env
+      - name: setup env
         run: |
-          echo "Version: $VERSION"
+          echo "VERSION=${TAG:1}" >> $GITHUB_ENV
+          echo "TAG: $TAG"
+          echo "VERSION: $VERSION"
       - name: Checkout lakefs-sdk-async
         uses: actions/checkout@v4
         with:
@@ -35,7 +37,7 @@ jobs:
         with:
           repository: treeverse/lakeFS
           path: lakefs
-          ref: ${{ env.VERSION }}
+          ref: ${{ env.TAG }}
       - name: Ok check
         run: |
           ls -lha $GITHUB_WORKSPACE
@@ -52,7 +54,7 @@ jobs:
       - name: Generate
         run: |
           rm -rf $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async 
-          PACKAGE_VERSION="${VERSION}" make -C $GITHUB_WORKSPACE/lakefs sdk-python
+          PACKAGE_VERSION="${{ env.VERSION }}" make -C $GITHUB_WORKSPACE/lakefs sdk-python
           cp -r $GITHUB_WORKSPACE/lakefs/clients/python $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async
       - name: Ok check
         run: |
@@ -66,11 +68,11 @@ jobs:
           gitcd config --global user.email 'github-actions@github.com'
           gitcd add -A
           if ! gitcd diff-index --quiet HEAD; then
-            gitcd commit -m "generated new version ${VERSION}" 
+            gitcd commit -m "generated new version ${env.VERSION}" 
           else
             echo "No changes to commit."
           fi
           gitcd push origin master
-          gitcd tag "$VERSION"
-          gitcd push origin "$VERSION" -f
+          gitcd tag "${{ env.VERSION }}"
+          gitcd push origin "${{ env.VERSION }}" -f
 
