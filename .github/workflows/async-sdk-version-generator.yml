@@ -52,6 +52,7 @@ jobs:
       - name: Patch makefile (package name and output dir)
         run: |
           sed -i "s/--package-name lakefs_sdk/--package-name lakefs_sdk_async/g" $GITHUB_WORKSPACE/lakefs/Makefile
+          sed -i "s/projectName=lakefs-sdk/projectName=lakefs-sdk-async/g" $GITHUB_WORKSPACE/lakefs/Makefile
       - name: Generate
         run: |
           rm -rf $GITHUB_WORKSPACE/lakefs-sdk-async/lakefs-sdk-async 
