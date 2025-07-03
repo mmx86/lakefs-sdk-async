@@ -9,6 +9,3 @@ files:
     destinationFilename: requirements.txt
 library: asyncio
 
-
-packageName: lakefs_sdk_async
-

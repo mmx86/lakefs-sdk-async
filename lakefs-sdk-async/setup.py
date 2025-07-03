@@ -13,7 +13,7 @@
 
 from setuptools import setup, find_packages  # noqa: H301
 
-NAME = "lakefs-sdk"
+NAME = "lakefs-sdk-async"
 VERSION = "1.53.0"
 # To install the library, run the following
 #
